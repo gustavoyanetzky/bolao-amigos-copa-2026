@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Bolão Amigos FC - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#262478",
+                        "border": "#272663",
+                        "on-error-container": "#ffdad6",
+                        "success-emerald": "#10B981",
+                        "on-primary-fixed-variant": "#3d3c8f",
+                        "outline-variant": "#464651",
+                        "on-secondary-fixed": "#1d1c11",
+                        "on-primary-fixed": "#0e0564",
+                        "on-secondary-fixed-variant": "#49473a",
+                        "error": "#ffb4ab",
+                        "text-secondary": "#9D9BC4",
+                        "zebra": "#12122F",
+                        "on-primary-container": "#a2a2fc",
+                        "on-secondary-container": "#bcb9a7",
+                        "error-red": "#EF4444",
+                        "on-surface": "#e2e0fc",
+                        "primary": "#c2c1ff",
+                        "surface-bright": "#37374d",
+                        "surface-variant": "#333349",
+                        "primary-fixed-dim": "#c2c1ff",
+                        "inverse-on-surface": "#2e2e44",
+                        "secondary-container": "#4b4a3c",
+                        "surface-tint": "#c2c1ff",
+                        "on-tertiary-fixed-variant": "#5a4300",
+                        "inverse-surface": "#e2e0fc",
+                        "on-error": "#690005",
+                        "surface-dim": "#111125",
+                        "surface-container-lowest": "#0c0c20",
+                        "secondary-fixed-dim": "#cac7b5",
+                        "surface": "#16163A",
+                        "on-tertiary-container": "#d1a42f",
+                        "secondary-fixed": "#e7e3d0",
+                        "on-secondary": "#323124",
+                        "secondary": "#cac7b5",
+                        "on-tertiary": "#3f2e00",
+                        "primary-container": "#353487",
+                        "tertiary": "#f0c049",
+                        "inverse-primary": "#5555a9",
+                        "on-background": "#e2e0fc",
+                        "surface-container-low": "#19192e",
+                        "error-container": "#93000a",
+                        "surface-container": "#1e1e32",
+                        "disabled": "#5B5A86",
+                        "tertiary-container": "#513c00",
+                        "on-surface-variant": "#c7c5d3",
+                        "on-tertiary-fixed": "#251a00",
+                        "tertiary-fixed": "#ffdf9a",
+                        "primary-fixed": "#e2dfff",
+                        "text-primary": "#ECEAF6",
+                        "surface-container-high": "#28283d",
+                        "surface-container-highest": "#333349",
+                        "background": "#111125",
+                        "tertiary-fixed-dim": "#f0c049",
+                        "outline": "#918f9c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "edge-margin": "1rem",
+                        "row-height-dense": "2.5rem",
+                        "gutter-table": "0.5rem",
+                        "stack-compact": "0.25rem",
+                        "touch-target-min": "2.75rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "data-cell": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "table-header": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "data-cell": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+                        "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "table-header": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col pb-20">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-container-low text-primary dark:text-primary docked full-width top-0 sticky z-50 border-b border-border flat no shadows transition-colors duration-200 flex justify-between items-center px-edge-margin h-14 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container flex items-center justify-center">
+<img alt="Amigos Futebol Clube Crest" class="w-full h-full object-cover" data-alt="A small, stylized digital crest for a sports club featuring deep indigo and ivory tones. The design incorporates a classic football graphic and minimal typography. The image is rendered in a modern, flat-vector style suitable for a high-end mobile application avatar. The lighting is neutral, emphasizing the crisp edges and rich corporate colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACLQhK6SR--GNH0TGC3VP6zNpXDnAjLuDbF2QogcfpDKgrK8HCblnvLOV5xRq-yLWAWYXqMWrG3RlCBirNnPJ_sLKbzfxEyeBioH2F6J85mqfLAWiZjYLBdY7YNxg08QbSEbcwctC2ALuRalgahNlpLNkAH67TRzXRFcloiW3uyvR86b9ddmX9koTC3pmyMTLK5n_A4hnX5A1xtq5uqpmDhP1HHMHbs8M0e3s7fHwCB2iopxYmmoicfewbP29QlrW2dkDBWClwAqY"/>
+</div>
+<h1 class="text-headline-md font-headline-md text-secondary-fixed">Bolão Amigos FC</h1>
+</div>
+<div class="text-label-sm font-label-sm text-text-secondary">
+            Updated 2m ago
+        </div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 p-edge-margin flex flex-col gap-6">
+<!-- Welcome Section -->
+<section class="flex flex-col gap-1">
+<h2 class="text-headline-lg font-headline-lg text-primary">Admin Dashboard</h2>
+<p class="text-body-md font-body-md text-text-secondary">Overview of the current season.</p>
+</section>
+<!-- Summary Grid -->
+<section class="grid grid-cols-2 gap-3">
+<!-- Card 1 -->
+<div class="bg-surface rounded-xl p-4 border border-border flex flex-col gap-2 relative overflow-hidden">
+<div class="flex items-center justify-between z-10">
+<span class="text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">Participantes</span>
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<div class="text-[32px] font-bold leading-none z-10 text-primary-fixed">17</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface rounded-xl p-4 border border-border flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">Pagos</span>
+<span class="material-symbols-outlined text-success-emerald text-xl" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div class="text-[32px] font-bold leading-none text-success-emerald">15</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface rounded-xl p-4 border border-border flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">Rodadas</span>
+<span class="material-symbols-outlined text-tertiary text-xl" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+</div>
+<div class="text-[32px] font-bold leading-none text-tertiary">12</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface rounded-xl p-4 border border-error flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-error uppercase tracking-wider">Sem Result.</span>
+<span class="material-symbols-outlined text-error text-xl" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="text-[32px] font-bold leading-none text-error">4</div>
+</div>
+</section>
+<!-- Prize Distribution -->
+<section class="bg-surface rounded-xl border border-border p-4 flex flex-col gap-4">
+<h3 class="text-body-lg font-body-lg text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+                Prize Pool
+            </h3>
+<div class="flex justify-between items-end border-b border-border pb-2">
+<span class="text-body-md font-body-md text-text-secondary">Total Arrecadado</span>
+<span class="text-headline-lg font-headline-lg text-primary-fixed">R$ 1.700</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="text-data-cell font-data-cell text-tertiary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> 1º Lugar (50%)
+                    </span>
+<span class="text-data-cell font-data-cell text-on-surface">R$ 850</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-data-cell font-data-cell text-secondary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> 2º Lugar (30%)
+                    </span>
+<span class="text-data-cell font-data-cell text-on-surface">R$ 510</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-data-cell font-data-cell text-text-secondary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-text-secondary"></span> 3º Lugar (20%)
+                    </span>
+<span class="text-data-cell font-data-cell text-on-surface">R$ 340</span>
+</div>
+</div>
+</section>
+<!-- Pending Tasks -->
+<section class="flex flex-col gap-3">
+<h3 class="text-body-lg font-body-lg text-primary">Pending Actions</h3>
+<div class="bg-surface rounded-xl border border-border overflow-hidden">
+<div class="flex items-center justify-between p-4 border-b border-border bg-surface-container-low">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">error</span>
+<span class="text-body-md font-body-md text-on-surface">Jogos sem resultado (4)</span>
+</div>
+<button class="text-primary hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">notification_important</span>
+<span class="text-body-md font-body-md text-on-surface">Cobrar pagamentos (2)</span>
+</div>
+<button class="text-primary hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Quick Actions -->
+<section class="grid grid-cols-3 gap-3 mt-4">
+<button class="bg-primary-container text-on-primary-container rounded-xl p-3 flex flex-col items-center justify-center gap-2 active:scale-95 transition-transform border border-border hover:border-primary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">group_add</span>
+<span class="text-label-sm font-label-sm">Manage<br/>Users</span>
+</button>
+<button class="bg-surface text-primary rounded-xl p-3 flex flex-col items-center justify-center gap-2 active:scale-95 transition-transform border border-border hover:border-primary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">sports_soccer</span>
+<span class="text-label-sm font-label-sm">Manage<br/>Matches</span>
+</button>
+<button class="bg-surface text-primary rounded-xl p-3 flex flex-col items-center justify-center gap-2 active:scale-95 transition-transform border border-border hover:border-primary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">edit_note</span>
+<span class="text-label-sm font-label-sm">Enter<br/>Scores</span>
+</button>
+</section>
+</main>
+<!-- BottomNavBar (Fallback for 5 items based on drawer JSON) -->
+<nav class="bg-surface dark:bg-surface-container text-primary dark:text-primary-fixed-dim fixed bottom-0 w-full z-50 h-16 border-t border-border shadow-lg flex justify-around items-center px-2 md:hidden">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-label-sm font-label-sm mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-secondary hover:text-primary scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-label-sm font-label-sm mt-1">Users</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-secondary hover:text-primary scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="text-label-sm font-label-sm mt-1">Jogos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-secondary hover:text-primary scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="text-label-sm font-label-sm mt-1">Palpites</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-secondary hover:text-primary scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-sm font-label-sm mt-1">Config</span>
+</a>
+</nav>
+<!-- Navigation Drawer (Hidden on Mobile, Visible on Desktop) -->
+<aside class="hidden md:flex h-full w-72 rounded-r-xl shadow-xl flex-col gap-1 p-4 bg-surface-container-high dark:bg-surface-container-highest text-primary fixed left-0 top-0 z-40 transition-all duration-300">
+<div class="mb-6 px-4 py-2">
+<h2 class="text-headline-sm font-headline-sm text-tertiary">Administração</h2>
+</div>
+<a class="flex items-center gap-3 bg-primary text-on-primary rounded-lg px-4 py-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-body-md font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-body-md font-body-md">Participantes</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="text-body-md font-body-md">Jogos</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="text-body-md font-body-md">Palpites</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-body-md font-body-md">Config</span>
+</a>
+</aside>
+</body></html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bolão Amigos FC - Resultados</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#262478",
+                        "border": "#272663",
+                        "on-error-container": "#ffdad6",
+                        "success-emerald": "#10B981",
+                        "on-primary-fixed-variant": "#3d3c8f",
+                        "outline-variant": "#464651",
+                        "on-secondary-fixed": "#1d1c11",
+                        "on-primary-fixed": "#0e0564",
+                        "on-secondary-fixed-variant": "#49473a",
+                        "error": "#ffb4ab",
+                        "text-secondary": "#9D9BC4",
+                        "zebra": "#12122F",
+                        "on-primary-container": "#a2a2fc",
+                        "on-secondary-container": "#bcb9a7",
+                        "error-red": "#EF4444",
+                        "on-surface": "#e2e0fc",
+                        "primary": "#c2c1ff",
+                        "surface-bright": "#37374d",
+                        "surface-variant": "#333349",
+                        "primary-fixed-dim": "#c2c1ff",
+                        "inverse-on-surface": "#2e2e44",
+                        "secondary-container": "#4b4a3c",
+                        "surface-tint": "#c2c1ff",
+                        "on-tertiary-fixed-variant": "#5a4300",
+                        "inverse-surface": "#e2e0fc",
+                        "on-error": "#690005",
+                        "surface-dim": "#111125",
+                        "surface-container-lowest": "#0c0c20",
+                        "secondary-fixed-dim": "#cac7b5",
+                        "surface": "#16163A",
+                        "on-tertiary-container": "#d1a42f",
+                        "secondary-fixed": "#e7e3d0",
+                        "on-secondary": "#323124",
+                        "secondary": "#cac7b5",
+                        "on-tertiary": "#3f2e00",
+                        "primary-container": "#353487",
+                        "tertiary": "#f0c049",
+                        "inverse-primary": "#5555a9",
+                        "on-background": "#e2e0fc",
+                        "surface-container-low": "#19192e",
+                        "error-container": "#93000a",
+                        "surface-container": "#1e1e32",
+                        "disabled": "#5B5A86",
+                        "tertiary-container": "#513c00",
+                        "on-surface-variant": "#c7c5d3",
+                        "on-tertiary-fixed": "#251a00",
+                        "tertiary-fixed": "#ffdf9a",
+                        "primary-fixed": "#e2dfff",
+                        "text-primary": "#ECEAF6",
+                        "surface-container-high": "#28283d",
+                        "surface-container-highest": "#333349",
+                        "background": "#111125",
+                        "tertiary-fixed-dim": "#f0c049",
+                        "outline": "#918f9c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "edge-margin": "1rem",
+                        "row-height-dense": "2.5rem",
+                        "gutter-table": "0.5rem",
+                        "stack-compact": "0.25rem",
+                        "touch-target-min": "2.75rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "data-cell": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "table-header": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "data-cell": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+                        "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "table-header": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md h-screen flex flex-col overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-container-low text-primary dark:text-primary docked full-width top-0 sticky z-50 border-b border-border flex justify-between items-center px-edge-margin h-14 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container overflow-hidden">
+<span class="material-symbols-outlined text-sm">shield</span>
+</div>
+<h1 class="text-headline-md-mobile font-headline-md tracking-tight font-extrabold">Bolão Amigos FC</h1>
+</div>
+<div class="text-label-sm font-label-sm text-text-secondary">
+            Updated 2m ago
+        </div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto pb-20">
+<!-- Group Header: Dia 1 -->
+<div class="sticky top-0 z-40 bg-surface-container/95 backdrop-blur-sm border-b border-border px-edge-margin py-1.5 flex items-center justify-between shadow-sm">
+<h2 class="text-table-header font-table-header text-text-secondary uppercase tracking-wider">Dia 1 — 11/06</h2>
+<span class="text-label-sm font-label-sm text-outline">2 Jogos</span>
+</div>
+<!-- Match List -->
+<div class="flex flex-col gap-gutter-table p-gutter-table">
+<!-- Match Card 1: Finished -->
+<button class="w-full text-left bg-surface border border-border rounded-lg p-4 relative flex flex-col gap-3 hover:bg-surface-variant transition-colors duration-200 active:scale-[0.99] group">
+<!-- Status Row -->
+<div class="flex justify-between items-center w-full">
+<span class="text-label-sm font-label-sm text-text-secondary group-hover:text-primary transition-colors">Grupo A</span>
+<div class="bg-success-emerald/10 border border-success-emerald/30 text-success-emerald text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-success-emerald"></span>
+                        Encerrado
+                    </div>
+</div>
+<!-- Score Row -->
+<div class="flex justify-between items-center w-full px-2">
+<!-- Home Team -->
+<div class="flex flex-col items-center gap-1 w-20">
+<div aria-label="Mexico flag" class="text-2xl">🇲🇽</div>
+<span class="text-data-cell font-data-cell text-on-surface truncate w-full text-center">MEX</span>
+</div>
+<!-- Score Box (Ivory) -->
+<div class="bg-secondary-fixed border border-secondary-container rounded lg flex items-center justify-center px-6 py-2 shadow-inner">
+<span class="text-headline-lg font-headline-lg text-on-secondary-fixed tabular-nums tracking-widest">2 - 0</span>
+</div>
+<!-- Away Team -->
+<div class="flex flex-col items-center gap-1 w-20">
+<div aria-label="South Africa flag" class="text-2xl">🇿🇦</div>
+<span class="text-data-cell font-data-cell text-on-surface truncate w-full text-center">RSA</span>
+</div>
+</div>
+</button>
+<!-- Match Card 2: Scheduled -->
+<button class="w-full text-left bg-surface border border-border rounded-lg p-4 relative flex flex-col gap-3 hover:bg-surface-variant transition-colors duration-200 active:scale-[0.99] group">
+<!-- Status Row -->
+<div class="flex justify-between items-center w-full">
+<span class="text-label-sm font-label-sm text-text-secondary group-hover:text-primary transition-colors">Grupo F</span>
+<div class="bg-surface-variant border border-outline-variant text-on-surface-variant text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">schedule</span>
+                        Agendado
+                    </div>
+</div>
+<!-- Score Row -->
+<div class="flex justify-between items-center w-full px-2">
+<!-- Home Team -->
+<div class="flex flex-col items-center gap-1 w-20">
+<div aria-label="Republic of Korea flag" class="text-2xl">🇰🇷</div>
+<span class="text-data-cell font-data-cell text-on-surface truncate w-full text-center">KOR</span>
+</div>
+<!-- Time Box (Neutral) -->
+<div class="bg-surface-container border border-border rounded lg flex flex-col items-center justify-center px-4 py-1.5">
+<span class="text-headline-md font-headline-md text-text-secondary tabular-nums">22:00</span>
+<span class="text-[10px] font-medium text-outline">Hoje</span>
+</div>
+<!-- Away Team -->
+<div class="flex flex-col items-center gap-1 w-20">
+<div aria-label="Czechia flag" class="text-2xl">🇨🇿</div>
+<span class="text-data-cell font-data-cell text-on-surface truncate w-full text-center">CZE</span>
+</div>
+</div>
+</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface dark:bg-surface-container fixed bottom-0 w-full z-50 h-16 border-t border-border bg-surface flex justify-around items-center w-full px-2 pb-safe">
+<!-- Tab 1: Classificação (Inactive) -->
+<button class="flex flex-col items-center justify-center text-text-secondary hover:text-primary scale-95 active:scale-90 transition-transform w-20 h-full gap-1">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="text-label-sm font-label-sm">Classificação</span>
+</button>
+<!-- Tab 2: Resultados (Active) -->
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 hover:text-primary scale-95 active:scale-90 transition-transform w-24 h-12 gap-0.5 relative -top-1 shadow-lg">
+<span class="material-symbols-outlined" data-icon="sports_soccer" style="font-variation-settings: 'FILL' 1;">sports_soccer</span>
+<span class="text-label-sm font-label-sm font-bold">Resultados</span>
+</button>
+<!-- Tab 3: Grade (Inactive) -->
+<button class="flex flex-col items-center justify-center text-text-secondary hover:text-primary scale-95 active:scale-90 transition-transform w-20 h-full gap-1">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="text-label-sm font-label-sm">Grade</span>
+</button>
+</nav>
+</body></html>

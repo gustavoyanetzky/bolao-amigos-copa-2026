@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Bolão Amigos FC - Administrar Participantes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary": "#262478",
+                      "border": "#272663",
+                      "on-error-container": "#ffdad6",
+                      "success-emerald": "#10B981",
+                      "on-primary-fixed-variant": "#3d3c8f",
+                      "outline-variant": "#464651",
+                      "on-secondary-fixed": "#1d1c11",
+                      "on-primary-fixed": "#0e0564",
+                      "on-secondary-fixed-variant": "#49473a",
+                      "error": "#ffb4ab",
+                      "text-secondary": "#9D9BC4",
+                      "zebra": "#12122F",
+                      "on-primary-container": "#a2a2fc",
+                      "on-secondary-container": "#bcb9a7",
+                      "error-red": "#EF4444",
+                      "on-surface": "#e2e0fc",
+                      "primary": "#c2c1ff",
+                      "surface-bright": "#37374d",
+                      "surface-variant": "#333349",
+                      "primary-fixed-dim": "#c2c1ff",
+                      "inverse-on-surface": "#2e2e44",
+                      "secondary-container": "#4b4a3c",
+                      "surface-tint": "#c2c1ff",
+                      "on-tertiary-fixed-variant": "#5a4300",
+                      "inverse-surface": "#e2e0fc",
+                      "on-error": "#690005",
+                      "surface-dim": "#111125",
+                      "surface-container-lowest": "#0c0c20",
+                      "secondary-fixed-dim": "#cac7b5",
+                      "surface": "#16163A",
+                      "on-tertiary-container": "#d1a42f",
+                      "secondary-fixed": "#e7e3d0",
+                      "on-secondary": "#323124",
+                      "secondary": "#cac7b5",
+                      "on-tertiary": "#3f2e00",
+                      "primary-container": "#353487",
+                      "tertiary": "#f0c049",
+                      "inverse-primary": "#5555a9",
+                      "on-background": "#e2e0fc",
+                      "surface-container-low": "#19192e",
+                      "error-container": "#93000a",
+                      "surface-container": "#1e1e32",
+                      "disabled": "#5B5A86",
+                      "tertiary-container": "#513c00",
+                      "on-surface-variant": "#c7c5d3",
+                      "on-tertiary-fixed": "#251a00",
+                      "tertiary-fixed": "#ffdf9a",
+                      "primary-fixed": "#e2dfff",
+                      "text-primary": "#ECEAF6",
+                      "surface-container-high": "#28283d",
+                      "surface-container-highest": "#333349",
+                      "background": "#111125",
+                      "tertiary-fixed-dim": "#f0c049",
+                      "outline": "#918f9c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "edge-margin": "1rem",
+                      "row-height-dense": "2.5rem",
+                      "gutter-table": "0.5rem",
+                      "stack-compact": "0.25rem",
+                      "touch-target-min": "2.75rem"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "data-cell": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "table-header": ["Inter"],
+                      "label-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                      "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                      "data-cell": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                      "body-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+                      "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                      "table-header": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                      "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dense data areas */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111125; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #272663; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #353487; 
+        }
+        
+        /* Toggle Switch Styles */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #10B981;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #10B981;
+        }
+        .toggle-checkbox {
+            right: 0;
+            z-index: 1;
+            border-color: #464651;
+            transition: all 0.3s;
+        }
+        .toggle-label {
+            width: 2.25rem;
+            height: 1.25rem;
+            background-color: #464651;
+            border-radius: 9999px;
+            transition: all 0.3s;
+        }
+        
+        /* Bottom Sheet Animation */
+        .bottom-sheet-enter {
+            transform: translateY(100%);
+        }
+        .bottom-sheet-enter-active {
+            transform: translateY(0);
+            transition: transform 300ms ease-out;
+        }
+        .bottom-sheet-exit {
+            transform: translateY(0);
+        }
+        .bottom-sheet-exit-active {
+            transform: translateY(100%);
+            transition: transform 300ms ease-in;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-text-primary min-h-screen flex flex-col font-body-md antialiased md:max-w-md md:mx-auto md:shadow-2xl overflow-x-hidden">
+<!-- Desktop Drawer (Hidden on Mobile, Required by Component Logic) -->
+<aside class="hidden md:flex flex-col fixed inset-y-0 left-0 z-50 h-full w-72 rounded-r-xl bg-surface-container-high dark:bg-surface-container-highest shadow-xl transition-transform duration-300 transform -translate-x-full md:translate-x-0">
+<div class="flex flex-col gap-1 p-4 h-full">
+<div class="px-4 py-4 mb-4">
+<h2 class="text-headline-sm font-headline-sm text-tertiary">Administração</h2>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-body-md font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 bg-primary text-on-primary rounded-lg px-4 py-3 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="groups" data-weight="fill" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="text-body-md font-body-md font-bold">Participantes</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+<span class="text-body-md font-body-md">Jogos</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="text-body-md font-body-md">Palpites</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-body-md font-body-md">Config</span>
+</a>
+</nav>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-edge-margin h-14 w-full bg-surface dark:bg-surface-container-low docked full-width top-0 sticky z-40 transition-colors duration-200">
+<div class="flex items-center gap-3">
+<img alt="Amigos Futebol Clube Crest" class="w-8 h-8 rounded-full border border-border" data-alt="A meticulously designed digital crest for 'Amigos Futebol Clube'. The crest features a classic shield shape divided horizontally. The top half is a creamy ivory color with the word 'AMIGOS' in bold, stylized indigo lettering, and 'FUTEBOL CLUBE' in smaller sans-serif text below. Three five-pointed stars sit above the name. The bottom half is a deep indigo blue, housing a central, detailed soccer ball encircled by an ivory laurel wreath. The year '2000' flanks the wreath. A small, stylized trumpet icon is positioned at the very bottom. The overall aesthetic is clean, modern vector art, reflecting a premium, slightly retro sports brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ3GrSDAq8_mKiwfKE7SAm2_HIpAftcE7XC2P5wDXDOpBzQXBzbLaDlJKorhUJyDQgFS6yYyZSrHi5w8IBHGHO7-XJNpurQOSEgciDpeyfdVFlJ-MMLSjfWE3L94DN1kgzIqsuKEGlIjfCdcM7u15SuGPLQeCNAul0II9Qj0zBhb03uEIPHRKG-5E2Inu5y4mwSF49zQtLnoFKjVC9jDH8euRzw8ykuPOR8cUNRfpGPhMLnLPb6yiLYkMYGXGU5Id3voLVDEQUh3c"/>
+<h1 class="text-headline-md-mobile font-headline-md text-primary font-bold tracking-tight">Bolão Amigos FC</h1>
+</div>
+<div class="flex items-center">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Admin</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col w-full px-edge-margin py-4 gap-4 pb-24 md:pb-8 relative">
+<!-- Header & Search -->
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<h2 class="text-headline-lg font-headline-lg text-text-primary">Participantes</h2>
+<span class="text-label-sm font-label-sm bg-surface-variant text-text-secondary px-2 py-1 rounded-md">12 Ativos</span>
+</div>
+<div class="relative w-full">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<span class="material-symbols-outlined text-text-secondary text-sm">search</span>
+</div>
+<input class="bg-surface border border-border text-text-primary text-body-md font-body-md rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 placeholder-text-secondary transition-colors" placeholder="Buscar participante..." type="text"/>
+</div>
+</div>
+<!-- Participants List (Dense Cards) -->
+<div class="flex flex-col gap-2 mt-2">
+<!-- Card 1 -->
+<div class="bg-surface rounded-lg border border-border p-3 flex items-center justify-between transition-colors hover:border-primary-container group">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-body-lg font-body-lg text-text-primary">Adriano Silva</span>
+</div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">sports_soccer</span> Seleção: Brasil</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-center gap-1">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Pago</span>
+<div class="relative inline-block w-9 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer checked:bg-success-emerald checked:border-success-emerald" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-success-emerald cursor-pointer" for="toggle1"></label>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-md text-text-secondary hover:bg-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 (Zebra) -->
+<div class="bg-zebra rounded-lg border border-border p-3 flex items-center justify-between transition-colors hover:border-primary-container group">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-body-lg font-body-lg text-text-primary">Alisson Becker</span>
+</div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">sports_soccer</span> Seleção: Argentina</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-center gap-1">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Pago</span>
+<div class="relative inline-block w-9 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-outline-variant cursor-pointer" for="toggle2"></label>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-md text-text-secondary hover:bg-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface rounded-lg border border-border p-3 flex items-center justify-between transition-colors hover:border-primary-container group">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-body-lg font-body-lg text-text-primary">Carlos Eduardo</span>
+<span class="bg-error-container text-error text-[10px] px-1.5 py-0.5 rounded font-bold uppercase">WO</span>
+</div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">sports_soccer</span> Seleção: França</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-center gap-1">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Pago</span>
+<div class="relative inline-block w-9 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer checked:bg-success-emerald checked:border-success-emerald" id="toggle3" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-success-emerald cursor-pointer" for="toggle3"></label>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-md text-text-secondary hover:bg-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4 (Zebra) -->
+<div class="bg-zebra rounded-lg border border-border p-3 flex items-center justify-between transition-colors hover:border-primary-container group">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-body-lg font-body-lg text-text-primary">Daniel Alves</span>
+</div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">sports_soccer</span> Seleção: Pendente</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-center gap-1">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Pago</span>
+<div class="relative inline-block w-9 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer" id="toggle4" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-outline-variant cursor-pointer" for="toggle4"></label>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-md text-text-secondary hover:bg-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB (Floating Action Button) -->
+<button class="fixed bottom-20 right-4 md:right-[calc(50%-220px)] w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:bg-primary-fixed transition-transform active:scale-90 z-40" id="addParticipantBtn">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- BottomNavBar (Mobile Only) -->
+<!-- Suppressed based on rules: This is an admin/task-focused screen, not a main destination. The FAB and Drawer are present, implying a sub-flow. -->
+<!-- Overlay / Bottom Sheet for Form -->
+<div class="fixed inset-0 bg-black/60 z-50 hidden opacity-0 transition-opacity duration-300" id="backdrop"></div>
+<div class="fixed bottom-0 left-0 right-0 md:max-w-md md:mx-auto bg-surface-container-high rounded-t-2xl shadow-2xl z-50 transform translate-y-full transition-transform duration-300 flex flex-col max-h-[795px]" id="bottomSheet">
+<!-- Drag Handle -->
+<div class="w-full flex justify-center pt-3 pb-2" id="dragHandle">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full"></div>
+</div>
+<!-- Form Header -->
+<div class="px-5 py-3 flex justify-between items-center border-b border-border">
+<h3 class="text-headline-md font-headline-md text-text-primary">Novo Participante</h3>
+<button class="p-2 text-text-secondary hover:bg-surface-variant rounded-full transition-colors" id="closeSheetBtn">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Form Content (Scrollable) -->
+<div class="p-5 overflow-y-auto flex-1 flex flex-col gap-5">
+<!-- Input: Name -->
+<div>
+<label class="block mb-2 text-label-sm font-label-sm text-text-secondary" for="name">Nome Completo</label>
+<input class="bg-surface border border-border text-text-primary text-body-md font-body-md rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 placeholder-text-secondary/50" id="name" placeholder="Ex: João Silva" type="text"/>
+</div>
+<!-- Input: Contact -->
+<div>
+<label class="block mb-2 text-label-sm font-label-sm text-text-secondary" for="contact">Contato (WhatsApp)</label>
+<input class="bg-surface border border-border text-text-primary text-body-md font-body-md rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 placeholder-text-secondary/50" id="contact" placeholder="(11) 99999-9999" type="tel"/>
+</div>
+<!-- Select: Seleção -->
+<div>
+<label class="block mb-2 text-label-sm font-label-sm text-text-secondary" for="team">Seleção Campeã (Palpite)</label>
+<select class="bg-surface border border-border text-text-primary text-body-md font-body-md rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 appearance-none" id="team">
+<option disabled="" selected="" value="">Selecione uma seleção</option>
+<option value="br">Brasil</option>
+<option value="ar">Argentina</option>
+<option value="fr">França</option>
+<option value="de">Alemanha</option>
+<option value="es">Espanha</option>
+</select>
+</div>
+<!-- Toggle: Status Pago -->
+<div class="flex items-center justify-between bg-surface p-4 rounded-lg border border-border mt-2">
+<div>
+<h4 class="text-body-md font-body-md text-text-primary">Status de Pagamento</h4>
+<p class="text-label-sm font-label-sm text-text-secondary mt-0.5">Taxa de inscrição confirmada</p>
+</div>
+<div class="relative inline-block w-12 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer checked:bg-success-emerald checked:border-success-emerald" id="toggleNew" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 w-12 rounded-full bg-outline-variant cursor-pointer" for="toggleNew"></label>
+</div>
+</div>
+</div>
+<!-- Sticky Footer Action -->
+<div class="p-5 border-t border-border bg-surface-container-high pb-safe">
+<button class="w-full bg-primary text-on-primary font-body-lg text-body-lg py-3 rounded-lg hover:bg-primary-fixed transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">save</span>
+                Salvar Participante
+            </button>
+</div>
+</div>
+<script>
+        // Simple logic for bottom sheet
+        const addBtn = document.getElementById('addParticipantBtn');
+        const sheet = document.getElementById('bottomSheet');
+        const backdrop = document.getElementById('backdrop');
+        const closeBtn = document.getElementById('closeSheetBtn');
+
+        function openSheet() {
+            backdrop.classList.remove('hidden');
+            // Small delay to allow display block to apply before animating opacity
+            setTimeout(() => {
+                backdrop.classList.remove('opacity-0');
+                backdrop.classList.add('opacity-100');
+                sheet.classList.remove('translate-y-full');
+            }, 10);
+        }
+
+        function closeSheet() {
+            sheet.classList.add('translate-y-full');
+            backdrop.classList.remove('opacity-100');
+            backdrop.classList.add('opacity-0');
+            setTimeout(() => {
+                backdrop.classList.add('hidden');
+            }, 300);
+        }
+
+        addBtn.addEventListener('click', openSheet);
+        closeBtn.addEventListener('click', closeSheet);
+        backdrop.addEventListener('click', closeSheet);
+    </script>
+</body></html>

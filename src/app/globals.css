@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Bolao Amigos FC — design tokens (Tailwind v4 @theme)
+   Fonte: design-system.md / mockups Stitch. Mobile-first, dark.
+   ============================================================ */
+@theme {
+  /* fonte */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* marca / base */
+  --color-brand-navy-deep: #0b0b1f;
+  --color-brand-cream: #f4f0dd;
+  --color-background: #111125;
+  --color-surface: #16163a;
+  --color-surface-variant: #333349;
+  --color-surface-container-low: #19192e;
+  --color-surface-container: #1e1e32;
+  --color-surface-container-high: #28283d;
+  --color-surface-container-highest: #333349;
+  --color-zebra: #12122f;
+  --color-border: #272663;
+  --color-outline: #918f9c;
+  --color-outline-variant: #464651;
+  --color-disabled: #5b5a86;
+
+  /* texto */
+  --color-text-primary: #eceaf6;
+  --color-text-secondary: #9d9bc4;
+  --color-on-surface: #e2e0fc;
+
+  /* primaria (indigo) */
+  --color-primary: #c2c1ff;
+  --color-primary-container: #353487;
+  --color-on-primary-container: #a2a2fc;
+  --color-on-primary: #262478;
+
+  /* status */
+  --color-success-emerald: #10b981;
+  --color-error-red: #ef4444;
+  --color-tertiary: #f0c049;
+
+  /* medalhas */
+  --color-medal-gold: #ffd700;
+  --color-medal-silver: #c0c0c0;
+  --color-medal-bronze: #cd7f32;
+
+  /* raio */
+  --radius: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+
+  /* espacamento nomeado */
+  --spacing-edge-margin: 1rem;
+  --spacing-row-height-dense: 2.5rem;
+  --spacing-gutter-table: 0.5rem;
+  --spacing-stack-compact: 0.25rem;
+  --spacing-touch-target-min: 2.75rem;
+  --spacing-header-height: 3.5rem;
+  --spacing-bottom-nav-height: 4rem;
+
+  /* tipografia */
+  --text-headline-lg: 20px;
+  --text-headline-lg--line-height: 28px;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 600;
+  --text-headline-md: 18px;
+  --text-headline-md--line-height: 24px;
+  --text-headline-md--font-weight: 600;
+  --text-headline-md-mobile: 16px;
+  --text-headline-md-mobile--line-height: 22px;
+  --text-headline-md-mobile--font-weight: 700;
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 22px;
+  --text-body-lg--font-weight: 600;
+  --text-body-md: 14px;
+  --text-body-md--line-height: 20px;
+  --text-body-md--font-weight: 400;
+  --text-data-cell: 13px;
+  --text-data-cell--line-height: 18px;
+  --text-data-cell--font-weight: 500;
+  --text-table-header: 11px;
+  --text-table-header--line-height: 16px;
+  --text-table-header--letter-spacing: 0.05em;
+  --text-table-header--font-weight: 700;
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 16px;
+  --text-label-sm--font-weight: 500;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-brand-navy-deep);
+  }
+  body {
+    background-color: var(--color-brand-navy-deep);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* numeros tabulares — usar em TODA coluna numerica */
+@utility tabular-data {
+  font-variant-numeric: tabular-nums;
+}
+
+/* esconde scrollbar mantendo scroll (tabelas densas) */
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

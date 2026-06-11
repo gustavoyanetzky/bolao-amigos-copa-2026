@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Match Details - Bolão Amigos FC</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#262478",
+                        "border": "#272663",
+                        "on-error-container": "#ffdad6",
+                        "success-emerald": "#10B981",
+                        "on-primary-fixed-variant": "#3d3c8f",
+                        "outline-variant": "#464651",
+                        "on-secondary-fixed": "#1d1c11",
+                        "on-primary-fixed": "#0e0564",
+                        "on-secondary-fixed-variant": "#49473a",
+                        "error": "#ffb4ab",
+                        "text-secondary": "#9D9BC4",
+                        "zebra": "#12122F",
+                        "on-primary-container": "#a2a2fc",
+                        "on-secondary-container": "#bcb9a7",
+                        "error-red": "#EF4444",
+                        "on-surface": "#e2e0fc",
+                        "primary": "#c2c1ff",
+                        "surface-bright": "#37374d",
+                        "surface-variant": "#333349",
+                        "primary-fixed-dim": "#c2c1ff",
+                        "inverse-on-surface": "#2e2e44",
+                        "secondary-container": "#4b4a3c",
+                        "surface-tint": "#c2c1ff",
+                        "on-tertiary-fixed-variant": "#5a4300",
+                        "inverse-surface": "#e2e0fc",
+                        "on-error": "#690005",
+                        "surface-dim": "#111125",
+                        "surface-container-lowest": "#0c0c20",
+                        "secondary-fixed-dim": "#cac7b5",
+                        "surface": "#16163A",
+                        "on-tertiary-container": "#d1a42f",
+                        "secondary-fixed": "#e7e3d0",
+                        "on-secondary": "#323124",
+                        "secondary": "#cac7b5",
+                        "on-tertiary": "#3f2e00",
+                        "primary-container": "#353487",
+                        "tertiary": "#f0c049",
+                        "inverse-primary": "#5555a9",
+                        "on-background": "#e2e0fc",
+                        "surface-container-low": "#19192e",
+                        "error-container": "#93000a",
+                        "surface-container": "#1e1e32",
+                        "disabled": "#5B5A86",
+                        "tertiary-container": "#513c00",
+                        "on-surface-variant": "#c7c5d3",
+                        "on-tertiary-fixed": "#251a00",
+                        "tertiary-fixed": "#ffdf9a",
+                        "primary-fixed": "#e2dfff",
+                        "text-primary": "#ECEAF6",
+                        "surface-container-high": "#28283d",
+                        "surface-container-highest": "#333349",
+                        "background": "#111125",
+                        "tertiary-fixed-dim": "#f0c049",
+                        "outline": "#918f9c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "edge-margin": "1rem",
+                        "row-height-dense": "2.5rem",
+                        "gutter-table": "0.5rem",
+                        "stack-compact": "0.25rem",
+                        "touch-target-min": "2.75rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "data-cell": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "table-header": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "data-cell": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+                        "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "table-header": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen flex flex-col font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar (Transactional - No Navigation Shell per constraints) -->
+<header class="bg-surface dark:bg-surface-container-low text-primary dark:text-primary docked full-width top-0 sticky z-50 border-b border-border flat no shadows flex justify-between items-center px-edge-margin h-14 w-full">
+<div class="flex items-center gap-3">
+<button class="p-2 -ml-2 rounded-full hover:bg-surface-variant transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-headline-md-mobile font-headline-md">Match Details</h1>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">
+            Encerrado
+        </div>
+</header>
+<main class="flex-1 w-full max-w-[390px] mx-auto md:max-w-xl pb-6">
+<!-- Match Header Hero -->
+<section class="bg-surface border-b border-border p-4 flex flex-col items-center gap-4">
+<div class="text-label-sm font-label-sm text-text-secondary uppercase tracking-wider text-center">
+                Fase de Grupos • 11/06 20:00
+            </div>
+<div class="flex items-center justify-between w-full max-w-[280px]">
+<!-- Team 1 -->
+<div class="flex flex-col items-center gap-2 w-20">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-border relative">
+<!-- Placeholder for Mexico Flag -->
+<div class="absolute inset-0 bg-green-600 flex">
+<div class="w-1/3 bg-green-600 h-full"></div>
+<div class="w-1/3 bg-white h-full"></div>
+<div class="w-1/3 bg-red-600 h-full"></div>
+</div>
+</div>
+<span class="text-body-lg font-body-lg text-text-primary text-center leading-none">MEX</span>
+</div>
+<!-- Score -->
+<div class="flex items-center gap-3">
+<span class="text-3xl font-headline-lg text-primary">2</span>
+<span class="text-text-secondary font-bold">-</span>
+<span class="text-3xl font-headline-lg text-primary">0</span>
+</div>
+<!-- Team 2 -->
+<div class="flex flex-col items-center gap-2 w-20">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-border relative">
+<!-- Placeholder for South Africa Flag -->
+<div class="absolute inset-0 bg-green-600 flex items-center justify-center">
+<div class="w-full h-full bg-black"></div>
+<div class="absolute w-full h-full" style="background: linear-gradient(to bottom right, transparent 40%, green 40%, green 60%, transparent 60%);"></div>
+<div class="absolute w-full h-full" style="background: linear-gradient(to top right, transparent 40%, green 40%, green 60%, transparent 60%);"></div>
+</div>
+</div>
+<span class="text-body-lg font-body-lg text-text-primary text-center leading-none">RSA</span>
+</div>
+</div>
+</section>
+<!-- Participants List -->
+<section class="mt-4 px-edge-margin">
+<div class="flex justify-between items-center mb-3">
+<h2 class="text-headline-sm font-headline-md text-primary">Palpites (15)</h2>
+<span class="text-label-sm font-label-sm text-text-secondary">Sorted by Pts</span>
+</div>
+<div class="bg-surface rounded-xl border border-border overflow-hidden">
+<!-- Header Row -->
+<div class="flex items-center px-4 h-10 border-b border-border bg-surface-container-high text-table-header font-table-header text-text-secondary sticky top-0">
+<div class="flex-1">PARTICIPANT</div>
+<div class="w-20 text-center">PALPITE</div>
+<div class="w-16 text-right">PTS</div>
+</div>
+<!-- List Body -->
+<div class="flex flex-col">
+<!-- Correct Score (Green) -->
+<div class="flex items-center px-4 h-row-height-dense border-b border-border bg-surface hover:bg-surface-variant transition-colors">
+<div class="flex-1 text-data-cell font-data-cell text-text-primary truncate pr-2">Dyego</div>
+<div class="w-20 flex justify-center">
+<div class="bg-success-emerald text-white px-2 py-0.5 rounded text-data-cell font-data-cell">2x0</div>
+</div>
+<div class="w-16 text-right text-success-emerald font-bold">+2</div>
+</div>
+<div class="flex items-center px-4 h-row-height-dense border-b border-border bg-zebra hover:bg-surface-variant transition-colors">
+<div class="flex-1 text-data-cell font-data-cell text-text-primary truncate pr-2">Fabricio</div>
+<div class="w-20 flex justify-center">
+<div class="bg-success-emerald text-white px-2 py-0.5 rounded text-data-cell font-data-cell">2x0</div>
+</div>
+<div class="w-16 text-right text-success-emerald font-bold">+2</div>
+</div>
+<!-- Partial Score (Yellow/Tertiary) -->
+<div class="flex items-center px-4 h-row-height-dense border-b border-border bg-surface hover:bg-surface-variant transition-colors">
+<div class="flex-1 text-data-cell font-data-cell text-text-primary truncate pr-2">Alisson</div>
+<div class="w-20 flex justify-center">
+<div class="bg-surface-variant border border-tertiary text-tertiary px-2 py-0.5 rounded text-data-cell font-data-cell">2x1</div>
+</div>
+<div class="w-16 text-right text-tertiary font-bold">+1</div>
+</div>
+<!-- Incorrect Score (Default/Gray) -->
+<div class="flex items-center px-4 h-row-height-dense border-b border-border bg-zebra hover:bg-surface-variant transition-colors">
+<div class="flex-1 text-data-cell font-data-cell text-text-primary truncate pr-2">Adriano</div>
+<div class="w-20 flex justify-center">
+<div class="bg-surface-container text-text-secondary px-2 py-0.5 rounded text-data-cell font-data-cell">2x2</div>
+</div>
+<div class="w-16 text-right text-text-secondary font-bold">0</div>
+</div>
+<div class="flex items-center px-4 h-row-height-dense border-b border-border bg-surface hover:bg-surface-variant transition-colors">
+<div class="flex-1 text-data-cell font-data-cell text-text-primary truncate pr-2">Marcelo</div>
+<div class="w-20 flex justify-center">
+<div class="bg-surface-container text-text-secondary px-2 py-0.5 rounded text-data-cell font-data-cell">1x0</div>
+</div>
+<div class="w-16 text-right text-text-secondary font-bold">0</div>
+</div>
+<div class="flex items-center px-4 h-row-height-dense border-b border-border bg-zebra hover:bg-surface-variant transition-colors">
+<div class="flex-1 text-data-cell font-data-cell text-text-primary truncate pr-2">Lucas</div>
+<div class="w-20 flex justify-center">
+<div class="bg-surface-container text-text-secondary px-2 py-0.5 rounded text-data-cell font-data-cell">0x1</div>
+</div>
+<div class="w-16 text-right text-text-secondary font-bold">0</div>
+</div>
+<!-- Missing/WO Score (Red) -->
+<div class="flex items-center px-4 h-row-height-dense border-b border-border bg-surface hover:bg-surface-variant transition-colors">
+<div class="flex-1 text-data-cell font-data-cell text-text-primary truncate pr-2 opacity-50">Thiago</div>
+<div class="w-20 flex justify-center">
+<div class="bg-error-red text-white px-2 py-0.5 rounded text-label-sm font-label-sm uppercase">WO</div>
+</div>
+<div class="w-16 text-right text-error-red font-bold">-</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Navigation Shell Suppressed per constraints (Transactional/Detail Screen) -->
+</body></html>

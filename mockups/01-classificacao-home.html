@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Bolão - Clube dos Amigos - Copa 2026</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config from Style Guidance -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#262478",
+                    "border": "#272663",
+                    "on-error-container": "#ffdad6",
+                    "success-emerald": "#10B981",
+                    "on-primary-fixed-variant": "#3d3c8f",
+                    "outline-variant": "#464651",
+                    "on-secondary-fixed": "#1d1c11",
+                    "on-primary-fixed": "#0e0564",
+                    "on-secondary-fixed-variant": "#49473a",
+                    "error": "#ffb4ab",
+                    "text-secondary": "#9D9BC4",
+                    "zebra": "#12122F",
+                    "on-primary-container": "#a2a2fc",
+                    "on-secondary-container": "#bcb9a7",
+                    "error-red": "#EF4444",
+                    "on-surface": "#e2e0fc",
+                    "primary": "#c2c1ff",
+                    "surface-bright": "#37374d",
+                    "surface-variant": "#333349",
+                    "primary-fixed-dim": "#c2c1ff",
+                    "inverse-on-surface": "#2e2e44",
+                    "secondary-container": "#4b4a3c",
+                    "surface-tint": "#c2c1ff",
+                    "on-tertiary-fixed-variant": "#5a4300",
+                    "inverse-surface": "#e2e0fc",
+                    "on-error": "#690005",
+                    "surface-dim": "#111125",
+                    "surface-container-lowest": "#0c0c20",
+                    "secondary-fixed-dim": "#cac7b5",
+                    "surface": "#16163A",
+                    "on-tertiary-container": "#d1a42f",
+                    "secondary-fixed": "#e7e3d0",
+                    "on-secondary": "#323124",
+                    "secondary": "#cac7b5",
+                    "on-tertiary": "#3f2e00",
+                    "primary-container": "#353487",
+                    "tertiary": "#f0c049",
+                    "inverse-primary": "#5555a9",
+                    "on-background": "#e2e0fc",
+                    "surface-container-low": "#19192e",
+                    "error-container": "#93000a",
+                    "surface-container": "#1e1e32",
+                    "disabled": "#5B5A86",
+                    "tertiary-container": "#513c00",
+                    "on-surface-variant": "#c7c5d3",
+                    "on-tertiary-fixed": "#251a00",
+                    "tertiary-fixed": "#ffdf9a",
+                    "primary-fixed": "#e2dfff",
+                    "text-primary": "#ECEAF6",
+                    "surface-container-high": "#28283d",
+                    "surface-container-highest": "#333349",
+                    "background": "#111125",
+                    "tertiary-fixed-dim": "#f0c049",
+                    "outline": "#918f9c",
+                    "brand-cream": "#F4F0DD",
+                    "brand-navy-deep": "#0B0B1F",
+                    "medal-gold": "#FFD700",
+                    "medal-silver": "#C0C0C0",
+                    "medal-bronze": "#CD7F32"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "edge-margin": "1rem",
+                    "row-height-dense": "2.5rem",
+                    "gutter-table": "0.5rem",
+                    "stack-compact": "0.25rem",
+                    "touch-target-min": "2.75rem",
+                    "header-height": "3.5rem",
+                    "bottom-nav-height": "4rem"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter", "sans-serif"],
+                    "body-md": ["Inter", "sans-serif"],
+                    "data-cell": ["Inter", "sans-serif"],
+                    "body-lg": ["Inter", "sans-serif"],
+                    "headline-md": ["Inter", "sans-serif"],
+                    "table-header": ["Inter", "sans-serif"],
+                    "label-sm": ["Inter", "sans-serif"]
+            },
+            "fontSize": {
+                    "headline-lg": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "data-cell": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                    "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-md-mobile": ["16px", {"lineHeight": "22px", "fontWeight": "700"}],
+                    "table-header": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.brand-navy-deep');
+            color: theme('colors.text-primary');
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Utility for tabular numbers in data cells */
+        .tabular-data {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Hide scrollbar for clean UI but allow scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="bg-brand-navy-deep text-text-primary min-h-screen flex flex-col relative pb-bottom-nav-height pt-header-height max-w-md mx-auto overflow-x-hidden selection:bg-primary-container selection:text-brand-cream">
+<!-- TopAppBar Component -->
+<header class="bg-surface dark:bg-surface-container-low text-primary dark:text-primary docked full-width top-0 sticky z-50 border-b border-border flat no-shadows flex justify-between items-center px-edge-margin h-14 w-full fixed max-w-md">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-brand-cream flex items-center justify-center shrink-0 border border-border">
+<!-- Using requested placeholder for Crest -->
+<img alt="Amigos Futebol Clube Crest" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6el0SNPGqhqZ-Xwk2dJjLIAF5dHsRIHDTdMEEgz2NkNEjpt2AMgYQOHNrkeOfZIyeRJNo7hX8WlWXFsR0Oo16bVD68GzLgz_pzooI_t2wF9U3PaliPgXw3OBa0kYedtsbIt0ke7rJMbduH9MeqLkosa1I0gnXanQhMotjFmwZgKBCCMa4Rb4V-iTfXI8JWr5wfag2RHH73CkbhA9wM33pwlszi5UyiYf9rEcOS0s5kwXvi83VihEbBK48KdHvvgwDVlCEYCg7Y1Y"/>
+</div>
+<div class="flex flex-col justify-center">
+<h1 class="text-headline-md-mobile font-headline-md text-brand-cream truncate max-w-[200px]">Bolão Amigos FC</h1>
+</div>
+</div>
+<div class="flex items-center">
+<span class="text-label-sm font-label-sm text-text-secondary truncate">Updated 2m ago</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col gap-4 p-edge-margin overflow-y-auto no-scrollbar">
+<!-- Compact Prize Card -->
+<section class="bg-surface rounded-xl border border-border p-3 flex flex-col gap-2 relative overflow-hidden">
+<!-- Subtle background accent -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container opacity-10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+<h2 class="text-table-header font-table-header text-text-secondary uppercase tracking-wider mb-1">Premiação Copa 2026</h2>
+<div class="flex justify-between items-center bg-surface-variant rounded-lg p-2 border border-outline-variant">
+<!-- 1st Place -->
+<div class="flex flex-col items-center gap-1 flex-1 border-r border-border border-opacity-50">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-medal-gold" style="font-variation-settings: 'FILL' 1; font-size: 16px;">workspace_premium</span>
+<span class="text-label-sm font-label-sm font-bold text-medal-gold">1º</span>
+</div>
+<span class="text-body-md font-body-md font-bold text-brand-cream tabular-data">60%</span>
+</div>
+<!-- 2nd Place -->
+<div class="flex flex-col items-center gap-1 flex-1 border-r border-border border-opacity-50">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-medal-silver" style="font-variation-settings: 'FILL' 1; font-size: 16px;">workspace_premium</span>
+<span class="text-label-sm font-label-sm font-bold text-medal-silver">2º</span>
+</div>
+<span class="text-body-md font-body-md font-bold text-brand-cream tabular-data">30%</span>
+</div>
+<!-- 3rd Place -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-medal-bronze" style="font-variation-settings: 'FILL' 1; font-size: 16px;">workspace_premium</span>
+<span class="text-label-sm font-label-sm font-bold text-medal-bronze">3º</span>
+</div>
+<span class="text-body-md font-body-md font-bold text-brand-cream tabular-data">10%</span>
+</div>
+</div>
+</section>
+<!-- League Table Container -->
+<section class="bg-surface rounded-xl border border-border flex flex-col overflow-hidden">
+<!-- Sticky Table Header -->
+<div class="grid grid-cols-[32px_1fr_40px] items-center px-3 py-2 bg-surface-container-high border-b border-border sticky top-0 z-10">
+<div class="text-table-header font-table-header text-text-secondary text-center">POS</div>
+<div class="text-table-header font-table-header text-text-secondary pl-2">PARTICIPANTE</div>
+<div class="text-table-header font-table-header text-brand-cream text-right pr-1">PTS</div>
+</div>
+<!-- Table Rows Container -->
+<div class="flex flex-col w-full divide-y divide-border">
+<!-- Row 1 (Dyego - 1st) -->
+<div class="grid grid-cols-[32px_1fr_40px] items-center px-3 py-3 bg-surface hover:bg-surface-variant transition-colors duration-150 relative">
+<!-- Position & Medal -->
+<div class="flex justify-center items-center relative">
+<span class="material-symbols-outlined text-medal-gold absolute opacity-20 scale-150 z-0" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="text-data-cell font-data-cell font-bold text-medal-gold z-10">1</span>
+</div>
+<!-- Participant Details -->
+<div class="flex flex-col pl-2 min-w-0">
+<span class="text-body-md font-body-md font-bold text-text-primary truncate">Dyego</span>
+<div class="flex items-center text-[10px] text-text-secondary gap-2 mt-0.5 tabular-data">
+<span>J 1</span>
+<span class="w-1 h-1 rounded-full bg-border"></span>
+<span class="text-success-emerald">Cr 0</span>
+<span class="w-1 h-1 rounded-full bg-border"></span>
+<span>WO 0</span>
+</div>
+</div>
+<!-- Points -->
+<div class="text-right flex items-center justify-end pr-1">
+<span class="text-headline-md font-headline-md text-brand-cream tabular-data">2</span>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-[32px_1fr_40px] items-center px-3 py-3 bg-zebra hover:bg-surface-variant transition-colors duration-150 relative">
+<div class="flex justify-center items-center relative">
+<span class="text-data-cell font-data-cell font-bold text-medal-silver z-10">2</span>
+</div>
+<div class="flex flex-col pl-2 min-w-0">
+<span class="text-body-md font-body-md font-medium text-text-primary truncate">Rafael C.</span>
+<div class="flex items-center text-[10px] text-text-secondary gap-2 mt-0.5 tabular-data">
+<span>J 1</span>
+<span class="w-1 h-1 rounded-full bg-border"></span>
+<span>Cr 0</span>
+<span class="w-1 h-1 rounded-full bg-border"></span>
+<span>WO 0</span>
+</div>
+</div>
+<div class="text-right flex items-center justify-end pr-1">
+<span class="text-body-lg font-body-lg text-brand-cream tabular-data opacity-90">1</span>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-[32px_1fr_40px] items-center px-3 py-3 bg-surface hover:bg-surface-variant transition-colors duration-150 relative">
+<div class="flex justify-center items-center relative">
+<span class="text-data-cell font-data-cell font-bold text-medal-bronze z-10">3</span>
+</div>
+<div class="flex flex-col pl-2 min-w-0">
+<span class="text-body-md font-body-md font-medium text-text-primary truncate">Marcelo T.</span>
+<div class="flex items-center text-[10px] text-text-secondary gap-2 mt-0.5 tabular-data">
+<span>J 1</span>
+<span class="w-1 h-1 rounded-full bg-border"></span>
+<span>Cr 0</span>
+<span class="w-1 h-1 rounded-full bg-border"></span>
+<span>WO 0</span>
+</div>
+</div>
+<div class="text-right flex items-center justify-end pr-1">
+<span class="text-body-lg font-body-lg text-brand-cream tabular-data opacity-90">1</span>
+</div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-[32px_1fr_40px] items-center px-3 py-3 bg-zebra hover:bg-surface-variant transition-colors duration-150">
+<div class="flex justify-center items-center">
+<span class="text-data-cell font-data-cell text-text-secondary">4</span>
+</div>
+<div class="flex flex-col pl-2 min-w-0">
+<span class="text-body-md font-body-md text-text-primary truncate">Lucas B.</span>
+<div class="flex items-center text-[10px] text-text-secondary gap-2 mt-0.5 tabular-data">
+<span>J 1</span>
+<span class="w-1 h-1 rounded-full bg-border"></span>
+<span>Cr 0</span>
+<span class="w-1 h-1 rounded-full bg-border"></span>
+<span>WO 0</span>
+</div>
+</div>
+<div class="text-right flex items-center justify-end pr-1">
+<span class="text-body-lg font-body-lg text-text-secondary tabular-data">0</span>
+</div>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-[32px_1fr_40px] items-center px-3 py-3 bg-surface hover:bg-surface-variant transition-colors duration-150">
+<div class="flex justify-center items-center">
+<span class="text-data-cell font-data-cell text-text-secondary">5</span>
+</div>
+<div class="flex flex-col pl-2 min-w-0">
+<span class="text-body-md font-body-md text-text-primary truncate opacity-50">João M.</span>
+<div class="flex items-center text-[10px] text-text-secondary gap-2 mt-0.5 tabular-data">
+<span>J 0</span>
+<span class="w-1 h-1 rounded-full bg-border"></span>
+<span>Cr 0</span>
+<span class="w-1 h-1 rounded-full bg-border"></span>
+<span class="text-error-red">WO 1</span>
+</div>
+</div>
+<div class="text-right flex items-center justify-end pr-1">
+<span class="text-body-lg font-body-lg text-text-secondary tabular-data">0</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Component -->
+<!-- Applying exact styles from JSON execution mandates -->
+<nav class="bg-surface dark:bg-surface-container text-primary dark:text-primary-fixed-dim fixed bottom-0 w-full z-50 h-16 border-t border-border shadow-lg flex justify-around items-center px-2 max-w-md mx-auto left-0 right-0">
+<!-- Active Tab: Classificação -->
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 hover:text-primary scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="text-label-sm font-label-sm mt-0.5">Classificação</span>
+</button>
+<!-- Inactive Tab: Resultados -->
+<button class="flex flex-col items-center justify-center text-text-secondary hover:text-primary scale-95 active:scale-90 transition-transform px-4 py-1">
+<span class="material-symbols-outlined" data-icon="sports_soccer">sports_soccer</span>
+<span class="text-label-sm font-label-sm mt-0.5">Resultados</span>
+</button>
+<!-- Inactive Tab: Grade -->
+<button class="flex flex-col items-center justify-center text-text-secondary hover:text-primary scale-95 active:scale-90 transition-transform px-4 py-1">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="text-label-sm font-label-sm mt-0.5">Grade</span>
+</button>
+</nav>
+</body></html>
