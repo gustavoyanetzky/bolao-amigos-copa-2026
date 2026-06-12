@@ -46,10 +46,12 @@
 |--------|------|-------|
 | id | uuid PK | |
 | rodada_id | uuid FK -> rodadas(id) ON DELETE CASCADE | |
-| fase | text NULL | grupos / oitavas / quartas / semi / final |
+| fase | text NULL | grupos / 16avos / oitavas / quartas / semi / terceiro / final |
 | grupo | text NULL | A..L (fase de grupos) |
-| time_casa_cod | text FK -> selecoes(codigo) | mandante (bandeira vem daqui) |
-| time_fora_cod | text FK -> selecoes(codigo) | visitante |
+| time_casa_cod | text NULL FK -> selecoes(codigo) | mandante (null no mata-mata ate definir) |
+| time_fora_cod | text NULL FK -> selecoes(codigo) | visitante (null no mata-mata ate definir) |
+| rotulo_casa | text NULL | vaga do mata-mata quando sem time ("1o A", "Venc. Jogo 73") |
+| rotulo_fora | text NULL | idem visitante |
 | classico | boolean NOT NULL default false | pontua mais |
 | invalidado | boolean NOT NULL default false | anula este jogo |
 | data_hora | timestamptz NOT NULL | |
@@ -170,6 +172,12 @@ ordenar por:
 > false). Mecanismo mantido para uso futuro.
 > **Resultados:** sempre lancados manualmente pelo admin. Sem auto-sync
 > nem API de resultados (decisao fechada).
+> **Mata-mata (placeholder):** jogos de fase eliminatoria entram com
+> time_*_cod null e rotulo de vaga ("1o A", "Venc. Jogo 73"). Quando a
+> fase de grupos define os classificados, o admin edita o jogo e seleciona
+> os 2 times reais (o rotulo some, aparece bandeira+nome). Pontua igual
+> aos grupos (placar; sem classico). UI usa o componente LadoTime p/ o
+> fallback de rotulo.
 
 ---
 

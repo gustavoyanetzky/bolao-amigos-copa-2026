@@ -48,6 +48,9 @@ manual (admin marca pago/nao-pago). Resultados digitados na mao.
 - Premiacao = arrecadado (pagos x valor_cota) dividido 60/30/10
 - Recalcular pontos ao: lancar/editar resultado (jogo afetado) e ao
   editar `config` de pontuacao (todos os palpites)
+- Mata-mata = placeholder: jogo entra com time_*_cod null + rotulo de
+  vaga ("1o A", "Venc. Jogo 73"); admin troca pelo time real quando os
+  grupos definirem. Pontua igual (placar; sem classico). UI: LadoTime
 - Um palpite por participante por jogo (UNIQUE)
 - Premio e da Copa inteira: ranking = soma acumulada, nao por rodada
 - Desempate (ordem): pontos desc -> cravadas desc -> WO asc ->

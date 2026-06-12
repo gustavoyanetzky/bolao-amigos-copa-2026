@@ -73,10 +73,22 @@ Mec · Nelson · Paulinho · Ribeiro · Ricardo PT
 
 ---
 
-## JOGOS — 1a RODADA DE GRUPOS (24 jogos, 11–17/jun)
+## JOGOS — TORNEIO COMPLETO (104 jogos / 22 rodadas)
 
-Horarios conforme FIFA (fuso de Brasilia). Sugestao de "rodada" do bolao
-= por dia.
+> Fonte completa e fiel = `supabase/seed.sql` (aplicado no banco). Abaixo
+> so a 1a rodada como amostra; o restante esta no seed.
+
+Estrutura carregada:
+- **Fase de grupos: 72 jogos**, times reais, rodadas "Dia 1"–"Dia 17"
+  (11–27/jun), 1 rodada por dia.
+- **Mata-mata: 32 jogos (placeholder)**, rodadas por fase: "16-avos de
+  final", "Oitavas de final", "Quartas de final", "Semifinais",
+  "3o lugar e Final" (28/jun–19/jul). Times = null + rotulo de vaga
+  ("1o A", "Venc. Jogo 73"...) ate os grupos definirem; admin troca pelo
+  time real depois.
+
+### 1a rodada — amostra (Dia 1, 11/06)
+Horarios conforme FIFA (fuso de Brasilia).
 
 ### Rodada Dia 1 — 11/06
 | Grupo | Jogo | Hora | Local |
@@ -198,7 +210,8 @@ Horarios conforme FIFA (fuso de Brasilia). Sugestao de "rodada" do bolao
 
 - [ ] Lista de 17 e final, ou entram mais?
 - [ ] Selecao campea de cada um (palpite separado, prazo 11/06 23:59)
-- [ ] Bolao cobre torneio inteiro (104 jogos) — puxar resto depois
+- [x] Torneio inteiro carregado (104 jogos / 22 rodadas). Mata-mata
+      placeholder — preencher times reais conforme classificacao.
 
 ---
 

@@ -186,9 +186,14 @@ Mostra **tudo**, transparente:
 - [ ] Premiacao (percentuais)
 - [ ] Config de pontuacao e premiacao
 
+### Feito (alem do MVP inicial)
+- [x] Torneio inteiro carregado: 104 jogos / 22 rodadas
+      (72 grupos com times reais + 32 mata-mata como placeholder de vaga)
+
 ### Fase 2
-- [ ] Importacao em massa do torneio inteiro (104 jogos + mata-mata)
 - [ ] Valor da cota opcional (mostrar R$)
+- [ ] (operacional) Preencher os times reais do mata-mata conforme
+      a fase de grupos define os classificados (admin edita o jogo)
 
 > Resultados sao SEMPRE lancados manualmente pelo admin. Sem auto-sync /
 > API de resultados (decisao fechada).
