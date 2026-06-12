@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -10,8 +10,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Bolão Amigos FC",
+  metadataBase: new URL("https://bolao-amigos-copa-2026.vercel.app"),
+  title: {
+    default: "Bolão Amigos FC",
+    template: "%s · Bolão Amigos FC",
+  },
   description: "Bolão da Copa do Mundo FIFA 2026 — Clube dos Amigos",
+  applicationName: "Bolão Amigos FC",
+  openGraph: {
+    title: "Bolão Amigos FC",
+    description: "Bolão da Copa do Mundo FIFA 2026 — Clube dos Amigos",
+    type: "website",
+    locale: "pt_BR",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0B0B1F",
 };
 
 export default function RootLayout({
