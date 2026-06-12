@@ -14,14 +14,14 @@ import {
   type PalpiteRanking,
   type ParticipanteRanking,
 } from "@/lib/ranking";
-import { createClient } from "@/lib/supabase/server";
+import { createAnonClient } from "@/lib/supabase/anon";
 import type { Config, ParticipantePublico, Selecao } from "@/lib/types";
 
-// Sempre dinamico: o ranking reflete o estado atual dos palpites/config.
-export const dynamic = "force-dynamic";
+// Leitura publica (RLS): cacheavel via ISR, revalidada on-demand pelas actions.
+export const revalidate = 60;
 
 export default async function Home() {
-  const supabase = await createClient();
+  const supabase = createAnonClient();
 
   // Carrega os dados publicos em paralelo (anon le so o que o RLS libera).
   const [

@@ -24,6 +24,8 @@ function revalidarPalpites() {
   revalidatePath("/admin/palpites");
   revalidatePath("/");
   revalidatePath("/grade");
+  revalidatePath("/resultados");
+  revalidatePath("/jogo/[id]", "page");
 }
 
 /**

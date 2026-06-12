@@ -33,6 +33,8 @@ function revalidarJogos(): void {
   revalidatePath("/admin/jogos");
   revalidatePath("/");
   revalidatePath("/resultados");
+  revalidatePath("/grade");
+  revalidatePath("/jogo/[id]", "page");
 }
 
 /** Le um inteiro >= 0 do FormData. Vazio/ausente -> null (se permitido). */

@@ -14,7 +14,7 @@ import LadoTime from "@/components/LadoTime";
 import CelulaGrade, { type EstadoCelula } from "@/components/CelulaGrade";
 import PublicBottomNav from "@/components/PublicBottomNav";
 import PublicHeader from "@/components/PublicHeader";
-import { createClient } from "@/lib/supabase/server";
+import { createAnonClient } from "@/lib/supabase/anon";
 import type {
   Config,
   Jogo,
@@ -25,7 +25,8 @@ import type {
 } from "@/lib/types";
 import Link from "next/link";
 
-export const dynamic = "force-dynamic";
+// Leitura publica (RLS): cacheavel via ISR, revalidada on-demand pelas actions.
+export const revalidate = 60;
 
 /** Mapa codigo -> selecao, para resolver bandeiras/nomes nas colunas. */
 function indexarSelecoes(selecoes: Selecao[]): Map<string, Selecao> {
@@ -64,7 +65,7 @@ export default async function GradePage({
   searchParams: Promise<{ rodada?: string }>;
 }) {
   const { rodada: rodadaParam } = await searchParams;
-  const supabase = await createClient();
+  const supabase = createAnonClient();
 
   // Dados base: rodadas (filtro), selecoes (colunas), participantes (linhas),
   // config (campeao real p/ futuro), e TODOS os palpites (p/ total geral).

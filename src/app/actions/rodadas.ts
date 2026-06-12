@@ -39,6 +39,8 @@ function parseOrdem(valor: FormDataEntryValue | null): number | null {
 function revalidar() {
   revalidatePath("/admin/rodadas");
   revalidatePath("/");
+  revalidatePath("/resultados");
+  revalidatePath("/grade");
 }
 
 /** Cria uma nova rodada. */

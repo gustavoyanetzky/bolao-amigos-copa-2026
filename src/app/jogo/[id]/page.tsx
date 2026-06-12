@@ -16,7 +16,7 @@ import Bandeira from "@/components/Bandeira";
 import Icon from "@/components/Icon";
 import PublicBottomNav from "@/components/PublicBottomNav";
 import PublicHeader from "@/components/PublicHeader";
-import { createClient } from "@/lib/supabase/server";
+import { createAnonClient } from "@/lib/supabase/anon";
 import type {
   Fase,
   Jogo,
@@ -26,7 +26,8 @@ import type {
   Selecao,
 } from "@/lib/types";
 
-export const dynamic = "force-dynamic";
+// Leitura publica (RLS): cacheavel via ISR, revalidada on-demand pelas actions.
+export const revalidate = 60;
 
 const ROTULO_FASE: Record<Fase, string> = {
   grupos: "Fase de grupos",
@@ -71,7 +72,7 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const supabase = await createClient();
+  const supabase = createAnonClient();
 
   // Jogo: se nao existe, 404.
   const { data: jogo } = await supabase

@@ -14,6 +14,12 @@ import type { Config } from "@/lib/types";
 
 const ROTA = "/admin/participantes";
 
+/** Revalida o admin e a home publica (ranking depende de participantes). */
+function revalidar() {
+  revalidatePath(ROTA);
+  revalidatePath("/");
+}
+
 export interface ResultadoAcao {
   ok: boolean;
   erro?: string;
@@ -63,7 +69,7 @@ export async function criarParticipante(
     return { ok: false, erro: "Nao foi possivel criar o participante." };
   }
 
-  revalidatePath(ROTA);
+  revalidar();
   return { ok: true };
 }
 
@@ -119,7 +125,7 @@ export async function atualizarParticipante(
     return { ok: false, erro: "Nao foi possivel salvar as alteracoes." };
   }
 
-  revalidatePath(ROTA);
+  revalidar();
   return { ok: true };
 }
 
@@ -139,7 +145,7 @@ export async function excluirParticipante(id: string): Promise<ResultadoAcao> {
     return { ok: false, erro: "Nao foi possivel excluir o participante." };
   }
 
-  revalidatePath(ROTA);
+  revalidar();
   return { ok: true };
 }
 
@@ -165,7 +171,7 @@ export async function alternarPago(
     return { ok: false, erro: "Nao foi possivel atualizar o pagamento." };
   }
 
-  revalidatePath(ROTA);
+  revalidar();
   return { ok: true };
 }
 
@@ -200,7 +206,7 @@ export async function definirCampea(
     return { ok: false, erro: "Nao foi possivel definir a selecao campea." };
   }
 
-  revalidatePath(ROTA);
+  revalidar();
   return { ok: true };
 }
 

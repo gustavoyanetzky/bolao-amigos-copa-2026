@@ -8,11 +8,11 @@ import PublicBottomNav from "@/components/PublicBottomNav";
 import LadoTime from "@/components/LadoTime";
 import Badge from "@/components/Badge";
 import Icon from "@/components/Icon";
-import { createClient } from "@/lib/supabase/server";
+import { createAnonClient } from "@/lib/supabase/anon";
 import type { Fase, Jogo, Rodada, Selecao } from "@/lib/types";
 
-// Sempre dados frescos (placares/encerrado mudam no admin).
-export const dynamic = "force-dynamic";
+// Leitura publica (RLS): cacheavel via ISR, revalidada on-demand pelas actions.
+export const revalidate = 60;
 
 // Nome legivel da fase (mata-mata nao tem grupo).
 const ROTULO_FASE: Record<Fase, string> = {
@@ -46,7 +46,7 @@ function formatarHora(iso: string): string {
 }
 
 export default async function ResultadosPage() {
-  const supabase = await createClient();
+  const supabase = createAnonClient();
 
   const [rodadasRes, jogosRes, selecoesRes] = await Promise.all([
     supabase
