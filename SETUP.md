@@ -70,3 +70,28 @@ disparo a **Onda 1** (libs + componentes + auth) com tudo integrado.
 
 > Secrets: `service_role` e senhas ficam so no `.env.local` (gitignored)
 > e nas env vars da Vercel. Nunca no GitHub.
+
+---
+
+## ESTADO PROVISIONADO (2026-06-11)
+
+| Item | Valor |
+|------|-------|
+| Supabase org | `gustavo_yanetzky` (pessoal) |
+| Supabase project | `bolao` — ref `vcgsarsiuvapzwiugdec` — region us-east-2 |
+| Supabase URL | https://vcgsarsiuvapzwiugdec.supabase.co |
+| Schema + seed | aplicados e verificados (48 selecoes, 17 part., 24 jogos, dia 1) |
+| GitHub repo | https://github.com/gustavoyanetzky/bolao-amigos-copa-2026 (privado) |
+| Vercel project | `bolao-amigos-copa-2026` — **team Meryan** (decisao: manter, excecao a separacao Meryan/pessoal) |
+| Vercel URL | https://bolao-amigos-copa-2026.vercel.app (live, placeholder) |
+
+### Pendencias
+- [ ] **Env vars no Vercel** — adicionar as 2 do Supabase (Settings >
+      Environment Variables) e Redeploy. Necessario antes da Onda 3.
+- [ ] **Admin** — criar em Supabase > Authentication > Users (email+senha).
+- [ ] **service_role** — colar no `.env.local` se for usar recalculo server-side.
+- [ ] Limpar projeto Vercel solto `project-pocn9` (import acidental?).
+
+> Nota: `api.github.com` esta bloqueada no shell local (gh/automacao
+> falham). `github.com` (git push HTTPS) funciona. Vercel<->GitHub e
+> server-side, nao afetado.
