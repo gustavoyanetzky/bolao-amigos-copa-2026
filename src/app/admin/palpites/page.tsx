@@ -153,6 +153,7 @@ export default async function PalpitesPage({
         </div>
       ) : (
         <GridPalpites
+          key={jogoSelecionadoId}
           jogoId={jogoSelecionadoId}
           jogoEncerrado={jogoEncerrado}
           casaCod={
