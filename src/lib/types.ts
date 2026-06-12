@@ -2,7 +2,14 @@
 // Quando houver projeto Supabase conectado, podem ser regenerados via
 // `supabase gen types typescript`.
 
-export type Fase = "grupos" | "oitavas" | "quartas" | "semi" | "final";
+export type Fase =
+  | "grupos"
+  | "16avos"
+  | "oitavas"
+  | "quartas"
+  | "semi"
+  | "terceiro"
+  | "final";
 
 export interface Selecao {
   codigo: string; // codigo FIFA, ex "BRA"
@@ -43,8 +50,12 @@ export interface Jogo {
   rodada_id: string;
   fase: Fase | null;
   grupo: string | null;
-  time_casa_cod: string;
-  time_fora_cod: string;
+  // Mata-mata: time so definido apos a fase de grupos -> codigo pode ser null
+  // e o lado e exibido pelo rotulo de vaga (ex: "1o A", "Venc. Jogo 73").
+  time_casa_cod: string | null;
+  time_fora_cod: string | null;
+  rotulo_casa: string | null;
+  rotulo_fora: string | null;
   classico: boolean;
   invalidado: boolean;
   data_hora: string;

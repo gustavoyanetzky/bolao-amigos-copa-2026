@@ -30,9 +30,11 @@ export const dynamic = "force-dynamic";
 
 const ROTULO_FASE: Record<Fase, string> = {
   grupos: "Fase de grupos",
+  "16avos": "16-avos de final",
   oitavas: "Oitavas de final",
   quartas: "Quartas de final",
   semi: "Semifinal",
+  terceiro: "Disputa de 3º lugar",
   final: "Final",
 };
 
@@ -90,7 +92,12 @@ export default async function Page({
     supabase
       .from("selecoes")
       .select("*")
-      .in("codigo", [jogo.time_casa_cod, jogo.time_fora_cod])
+      .in(
+        "codigo",
+        [jogo.time_casa_cod, jogo.time_fora_cod].filter(
+          (c): c is string => c !== null,
+        ),
+      )
       .returns<Selecao[]>(),
     supabase
       .from("rodadas")
@@ -135,8 +142,8 @@ export default async function Page({
       return a.nome.localeCompare(b.nome, "pt-BR");
     });
 
-  const nomeCasa = casa?.nome ?? jogo.time_casa_cod;
-  const nomeFora = fora?.nome ?? jogo.time_fora_cod;
+  const nomeCasa = casa?.nome ?? jogo.rotulo_casa ?? "A definir";
+  const nomeFora = fora?.nome ?? jogo.rotulo_fora ?? "A definir";
   const rotuloFase = jogo.fase ? ROTULO_FASE[jogo.fase] : null;
   const dataHora = formatarDataHora(jogo.data_hora);
 
@@ -172,14 +179,20 @@ export default async function Page({
           <div className="flex items-center justify-between w-full max-w-[300px]">
             {/* Casa */}
             <div className="flex flex-col items-center gap-2 w-24 min-w-0">
-              <Bandeira
-                iso2={casa?.iso2 ?? null}
-                nome={nomeCasa}
-                width={48}
-                height={36}
-                className="border-2 border-border"
-              />
-              <span className="text-body-lg font-body-lg text-text-primary text-center leading-tight truncate w-full">
+              {casa ? (
+                <Bandeira
+                  iso2={casa.iso2}
+                  nome={nomeCasa}
+                  width={48}
+                  height={36}
+                  className="border-2 border-border"
+                />
+              ) : null}
+              <span
+                className={`text-body-lg font-body-lg text-center leading-tight truncate w-full ${
+                  casa ? "text-text-primary" : "text-text-secondary"
+                }`}
+              >
                 {nomeCasa}
               </span>
             </div>
@@ -210,14 +223,20 @@ export default async function Page({
 
             {/* Fora */}
             <div className="flex flex-col items-center gap-2 w-24 min-w-0">
-              <Bandeira
-                iso2={fora?.iso2 ?? null}
-                nome={nomeFora}
-                width={48}
-                height={36}
-                className="border-2 border-border"
-              />
-              <span className="text-body-lg font-body-lg text-text-primary text-center leading-tight truncate w-full">
+              {fora ? (
+                <Bandeira
+                  iso2={fora.iso2}
+                  nome={nomeFora}
+                  width={48}
+                  height={36}
+                  className="border-2 border-border"
+                />
+              ) : null}
+              <span
+                className={`text-body-lg font-body-lg text-center leading-tight truncate w-full ${
+                  fora ? "text-text-primary" : "text-text-secondary"
+                }`}
+              >
                 {nomeFora}
               </span>
             </div>

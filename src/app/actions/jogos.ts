@@ -18,7 +18,15 @@ import type { Fase } from "@/lib/types";
 
 export type JogoActionState = { error: string } | undefined;
 
-const FASES_VALIDAS: Fase[] = ["grupos", "oitavas", "quartas", "semi", "final"];
+const FASES_VALIDAS: Fase[] = [
+  "grupos",
+  "16avos",
+  "oitavas",
+  "quartas",
+  "semi",
+  "terceiro",
+  "final",
+];
 
 /** Revalida as rotas impactadas por mudancas em jogos. */
 function revalidarJogos(): void {

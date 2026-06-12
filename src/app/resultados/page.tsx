@@ -5,14 +5,25 @@
 import Link from "next/link";
 import PublicHeader from "@/components/PublicHeader";
 import PublicBottomNav from "@/components/PublicBottomNav";
-import Bandeira from "@/components/Bandeira";
+import LadoTime from "@/components/LadoTime";
 import Badge from "@/components/Badge";
 import Icon from "@/components/Icon";
 import { createClient } from "@/lib/supabase/server";
-import type { Jogo, Rodada, Selecao } from "@/lib/types";
+import type { Fase, Jogo, Rodada, Selecao } from "@/lib/types";
 
 // Sempre dados frescos (placares/encerrado mudam no admin).
 export const dynamic = "force-dynamic";
+
+// Nome legivel da fase (mata-mata nao tem grupo).
+const ROTULO_FASE: Record<Fase, string> = {
+  grupos: "Fase de grupos",
+  "16avos": "16-avos",
+  oitavas: "Oitavas",
+  quartas: "Quartas",
+  semi: "Semifinal",
+  terceiro: "3º lugar",
+  final: "Final",
+};
 
 // Formata "2026-06-11..." em "11/06" (data curta, pt-BR).
 function formatarPrazo(iso: string): string {
@@ -45,7 +56,7 @@ export default async function ResultadosPage() {
     supabase
       .from("jogos")
       .select(
-        "id, rodada_id, fase, grupo, time_casa_cod, time_fora_cod, classico, invalidado, data_hora, placar_casa, placar_fora, encerrado, created_at",
+        "id, rodada_id, fase, grupo, time_casa_cod, time_fora_cod, rotulo_casa, rotulo_fora, classico, invalidado, data_hora, placar_casa, placar_fora, encerrado, created_at",
       )
       .order("data_hora", { ascending: true }),
     supabase.from("selecoes").select("codigo, nome, iso2, emoji"),
@@ -105,8 +116,12 @@ export default async function ResultadosPage() {
                 ) : (
                   <div className="flex flex-col gap-gutter-table p-gutter-table">
                     {jogosDaRodada.map((jogo) => {
-                      const casa = selecaoPorCodigo.get(jogo.time_casa_cod);
-                      const fora = selecaoPorCodigo.get(jogo.time_fora_cod);
+                      const casa = jogo.time_casa_cod
+                        ? (selecaoPorCodigo.get(jogo.time_casa_cod) ?? null)
+                        : null;
+                      const fora = jogo.time_fora_cod
+                        ? (selecaoPorCodigo.get(jogo.time_fora_cod) ?? null)
+                        : null;
                       const invalidado =
                         jogo.invalidado || rodada.invalidada;
 
@@ -122,7 +137,9 @@ export default async function ResultadosPage() {
                               <span className="text-label-sm font-label-sm text-text-secondary group-hover:text-primary transition-colors truncate">
                                 {jogo.grupo
                                   ? `Grupo ${jogo.grupo}`
-                                  : jogo.fase ?? "Jogo"}
+                                  : jogo.fase
+                                    ? ROTULO_FASE[jogo.fase]
+                                    : "Jogo"}
                               </span>
                               {jogo.classico ? (
                                 <Badge variante="classico" />
@@ -150,14 +167,13 @@ export default async function ResultadosPage() {
                           <div className="flex justify-between items-center w-full px-2">
                             {/* Time casa */}
                             <div className="flex flex-col items-center gap-1 w-20">
-                              <Bandeira
-                                iso2={casa?.iso2 ?? null}
-                                nome={casa?.nome ?? jogo.time_casa_cod}
-                                width={20}
-                              />
-                              <span className="text-data-cell font-data-cell text-on-surface truncate w-full text-center">
-                                {jogo.time_casa_cod}
-                              </span>
+                              {casa ? (
+                                <LadoTime selecao={casa} width={20} />
+                              ) : (
+                                <span className="text-data-cell font-data-cell text-text-secondary truncate w-full text-center">
+                                  {jogo.rotulo_casa ?? "A definir"}
+                                </span>
+                              )}
                             </div>
 
                             {/* Caixa central: placar (encerrado) ou horario */}
@@ -180,14 +196,13 @@ export default async function ResultadosPage() {
 
                             {/* Time fora */}
                             <div className="flex flex-col items-center gap-1 w-20">
-                              <Bandeira
-                                iso2={fora?.iso2 ?? null}
-                                nome={fora?.nome ?? jogo.time_fora_cod}
-                                width={20}
-                              />
-                              <span className="text-data-cell font-data-cell text-on-surface truncate w-full text-center">
-                                {jogo.time_fora_cod}
-                              </span>
+                              {fora ? (
+                                <LadoTime selecao={fora} width={20} />
+                              ) : (
+                                <span className="text-data-cell font-data-cell text-text-secondary truncate w-full text-center">
+                                  {jogo.rotulo_fora ?? "A definir"}
+                                </span>
+                              )}
                             </div>
                           </div>
                         </Link>

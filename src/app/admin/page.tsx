@@ -9,7 +9,7 @@
  */
 
 import Link from "next/link";
-import Bandeira from "@/components/Bandeira";
+import LadoTime from "@/components/LadoTime";
 import CardPremiacao from "@/components/CardPremiacao";
 import Icon from "@/components/Icon";
 import { premiacao } from "@/lib/ranking";
@@ -340,31 +340,21 @@ export default async function AdminDashboardPage() {
         {proximos.length > 0 ? (
           <div className="overflow-hidden rounded-xl border border-border bg-surface">
             {proximos.map((jogo) => {
-              const casa = porCodigo.get(jogo.time_casa_cod);
-              const fora = porCodigo.get(jogo.time_fora_cod);
+              const casa = jogo.time_casa_cod
+                ? (porCodigo.get(jogo.time_casa_cod) ?? null)
+                : null;
+              const fora = jogo.time_fora_cod
+                ? (porCodigo.get(jogo.time_fora_cod) ?? null)
+                : null;
               return (
                 <div
                   key={jogo.id}
                   className="flex items-center justify-between gap-2 border-b border-border px-4 py-3 last:border-b-0"
                 >
                   <div className="flex min-w-0 items-center gap-2">
-                    <Bandeira
-                      iso2={casa?.iso2 ?? null}
-                      nome={casa?.nome ?? jogo.time_casa_cod}
-                      width={20}
-                    />
-                    <span className="text-data-cell font-medium text-on-surface">
-                      {jogo.time_casa_cod}
-                    </span>
+                    <LadoTime selecao={casa} rotulo={jogo.rotulo_casa} width={20} />
                     <span className="text-label-sm text-text-secondary">×</span>
-                    <span className="text-data-cell font-medium text-on-surface">
-                      {jogo.time_fora_cod}
-                    </span>
-                    <Bandeira
-                      iso2={fora?.iso2 ?? null}
-                      nome={fora?.nome ?? jogo.time_fora_cod}
-                      width={20}
-                    />
+                    <LadoTime selecao={fora} rotulo={jogo.rotulo_fora} width={20} />
                   </div>
                   <span className="shrink-0 text-label-sm text-text-secondary tabular-data">
                     {formatarDataHora(jogo.data_hora)}

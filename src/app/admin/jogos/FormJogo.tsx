@@ -22,9 +22,11 @@ interface SelecaoOpcao {
 
 const FASES = [
   { valor: "grupos", rotulo: "Fase de grupos" },
+  { valor: "16avos", rotulo: "16-avos" },
   { valor: "oitavas", rotulo: "Oitavas" },
   { valor: "quartas", rotulo: "Quartas" },
   { valor: "semi", rotulo: "Semifinal" },
+  { valor: "terceiro", rotulo: "3º lugar" },
   { valor: "final", rotulo: "Final" },
 ] as const;
 

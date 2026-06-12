@@ -43,14 +43,17 @@ export default async function PalpitesPage({
   });
 
   const opcoes: JogoOpcao[] = jogosOrdenados.map((j) => {
-    const casa = selecaoPorCod.get(j.time_casa_cod);
-    const fora = selecaoPorCod.get(j.time_fora_cod);
+    const casa = j.time_casa_cod ? selecaoPorCod.get(j.time_casa_cod) : null;
+    const fora = j.time_fora_cod ? selecaoPorCod.get(j.time_fora_cod) : null;
+    // Mata-mata sem time definido: usa o rotulo de vaga como texto do lado.
+    const casaTexto = j.time_casa_cod ?? j.rotulo_casa ?? "A definir";
+    const foraTexto = j.time_fora_cod ?? j.rotulo_fora ?? "A definir";
     return {
       id: j.id,
-      casaCod: j.time_casa_cod,
-      foraCod: j.time_fora_cod,
-      casaNome: casa?.nome ?? j.time_casa_cod,
-      foraNome: fora?.nome ?? j.time_fora_cod,
+      casaCod: casaTexto,
+      foraCod: foraTexto,
+      casaNome: casa?.nome ?? casaTexto,
+      foraNome: fora?.nome ?? foraTexto,
       rodadaNome: rodadaPorId.get(j.rodada_id)?.nome ?? "—",
       encerrado: j.encerrado,
     };
@@ -102,12 +105,14 @@ export default async function PalpitesPage({
     });
   }
 
-  const casaSel = jogoSelecionado
-    ? selecaoPorCod.get(jogoSelecionado.time_casa_cod)
-    : undefined;
-  const foraSel = jogoSelecionado
-    ? selecaoPorCod.get(jogoSelecionado.time_fora_cod)
-    : undefined;
+  const casaSel =
+    jogoSelecionado?.time_casa_cod
+      ? selecaoPorCod.get(jogoSelecionado.time_casa_cod)
+      : undefined;
+  const foraSel =
+    jogoSelecionado?.time_fora_cod
+      ? selecaoPorCod.get(jogoSelecionado.time_fora_cod)
+      : undefined;
 
   return (
     <div className="flex flex-col gap-4">
@@ -150,12 +155,30 @@ export default async function PalpitesPage({
         <GridPalpites
           jogoId={jogoSelecionadoId}
           jogoEncerrado={jogoEncerrado}
-          casaCod={jogoSelecionado?.time_casa_cod ?? ""}
-          foraCod={jogoSelecionado?.time_fora_cod ?? ""}
+          casaCod={
+            jogoSelecionado?.time_casa_cod ??
+            jogoSelecionado?.rotulo_casa ??
+            "A definir"
+          }
+          foraCod={
+            jogoSelecionado?.time_fora_cod ??
+            jogoSelecionado?.rotulo_fora ??
+            "A definir"
+          }
           casaIso2={casaSel?.iso2 ?? null}
           foraIso2={foraSel?.iso2 ?? null}
-          casaNome={casaSel?.nome ?? jogoSelecionado?.time_casa_cod ?? ""}
-          foraNome={foraSel?.nome ?? jogoSelecionado?.time_fora_cod ?? ""}
+          casaNome={
+            casaSel?.nome ??
+            jogoSelecionado?.time_casa_cod ??
+            jogoSelecionado?.rotulo_casa ??
+            "A definir"
+          }
+          foraNome={
+            foraSel?.nome ??
+            jogoSelecionado?.time_fora_cod ??
+            jogoSelecionado?.rotulo_fora ??
+            "A definir"
+          }
           linhas={linhas}
         />
       )}

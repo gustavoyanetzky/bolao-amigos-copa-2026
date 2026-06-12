@@ -209,3 +209,56 @@ where not exists (
   where j.time_casa_cod = v.casa and j.time_fora_cod = v.fora
     and j.data_hora = v.dh::timestamptz
 );
+
+-- ============================================================
+-- MATA-MATA (32 jogos placeholder — times definidos apos os grupos).
+-- Requer migration 0002 (time_*_cod nullable + rotulo_*). Total = 104 jogos.
+-- ============================================================
+insert into public.rodadas (nome, ordem, prazo_palpite) values
+  ('16-avos de final', 18, '2026-06-28 14:00-03'),
+  ('Oitavas de final', 19, '2026-07-04 12:00-03'),
+  ('Quartas de final', 20, '2026-07-09 15:00-03'),
+  ('Semifinais',        21, '2026-07-14 14:00-03'),
+  ('3º lugar e Final',  22, '2026-07-18 16:00-03')
+on conflict do nothing;
+
+insert into public.jogos (rodada_id, fase, time_casa_cod, time_fora_cod, rotulo_casa, rotulo_fora, data_hora)
+select r.id, v.fase, null, null, v.rc, v.rf, v.dh::timestamptz
+from (values
+  ('16-avos de final','16avos','2º A','2º B','2026-06-28 15:00-03'),
+  ('16-avos de final','16avos','1º C','2º F','2026-06-29 13:00-03'),
+  ('16-avos de final','16avos','1º E','3º A/B/C/D/F','2026-06-29 16:30-03'),
+  ('16-avos de final','16avos','1º F','2º C','2026-06-29 21:00-03'),
+  ('16-avos de final','16avos','2º E','2º I','2026-06-30 13:00-03'),
+  ('16-avos de final','16avos','1º I','3º C/D/F/G/H','2026-06-30 17:00-03'),
+  ('16-avos de final','16avos','1º A','3º C/E/F/H/I','2026-06-30 21:00-03'),
+  ('16-avos de final','16avos','1º L','3º E/H/I/J/K','2026-07-01 12:00-03'),
+  ('16-avos de final','16avos','1º G','3º A/E/H/I/J','2026-07-01 16:00-03'),
+  ('16-avos de final','16avos','1º D','3º B/E/F/I/J','2026-07-01 20:00-03'),
+  ('16-avos de final','16avos','1º H','2º J','2026-07-02 15:00-03'),
+  ('16-avos de final','16avos','2º K','2º L','2026-07-02 19:00-03'),
+  ('16-avos de final','16avos','1º B','3º E/F/G/I/J','2026-07-02 23:00-03'),
+  ('16-avos de final','16avos','2º D','2º G','2026-07-03 14:00-03'),
+  ('16-avos de final','16avos','1º J','2º H','2026-07-03 18:00-03'),
+  ('16-avos de final','16avos','1º K','3º D/E/I/J/L','2026-07-03 21:30-03'),
+  ('Oitavas de final','oitavas','Venc. Jogo 73','Venc. Jogo 75','2026-07-04 13:00-03'),
+  ('Oitavas de final','oitavas','Venc. Jogo 74','Venc. Jogo 77','2026-07-04 17:00-03'),
+  ('Oitavas de final','oitavas','Venc. Jogo 76','Venc. Jogo 78','2026-07-05 16:00-03'),
+  ('Oitavas de final','oitavas','Venc. Jogo 79','Venc. Jogo 80','2026-07-05 20:00-03'),
+  ('Oitavas de final','oitavas','Venc. Jogo 83','Venc. Jogo 84','2026-07-06 15:00-03'),
+  ('Oitavas de final','oitavas','Venc. Jogo 81','Venc. Jogo 82','2026-07-06 20:00-03'),
+  ('Oitavas de final','oitavas','Venc. Jogo 86','Venc. Jogo 88','2026-07-07 12:00-03'),
+  ('Oitavas de final','oitavas','Venc. Jogo 85','Venc. Jogo 87','2026-07-07 16:00-03'),
+  ('Quartas de final','quartas','Venc. Oitava 1','Venc. Oitava 2','2026-07-09 16:00-03'),
+  ('Quartas de final','quartas','Venc. Oitava 5','Venc. Oitava 6','2026-07-10 15:00-03'),
+  ('Quartas de final','quartas','Venc. Oitava 3','Venc. Oitava 4','2026-07-11 17:00-03'),
+  ('Quartas de final','quartas','Venc. Oitava 7','Venc. Oitava 8','2026-07-11 21:00-03'),
+  ('Semifinais','semi','Venc. Quarta 1','Venc. Quarta 2','2026-07-14 15:00-03'),
+  ('Semifinais','semi','Venc. Quarta 3','Venc. Quarta 4','2026-07-15 15:00-03'),
+  ('3º lugar e Final','terceiro','Perdedor Semi 1','Perdedor Semi 2','2026-07-18 17:00-03'),
+  ('3º lugar e Final','final','Vencedor Semi 1','Vencedor Semi 2','2026-07-19 15:00-03')
+) as v(rodada, fase, rc, rf, dh)
+join public.rodadas r on r.nome = v.rodada
+where not exists (
+  select 1 from public.jogos j where j.rotulo_casa = v.rc and j.rotulo_fora = v.rf
+);

@@ -10,7 +10,7 @@
  * thin client / fat server — nenhuma logica sensivel aqui, so leitura e render.
  */
 
-import Bandeira from "@/components/Bandeira";
+import LadoTime from "@/components/LadoTime";
 import CelulaGrade, { type EstadoCelula } from "@/components/CelulaGrade";
 import PublicBottomNav from "@/components/PublicBottomNav";
 import PublicHeader from "@/components/PublicHeader";
@@ -224,8 +224,12 @@ export default async function GradePage({
 
                   {/* Cabecalhos dos jogos (clicaveis) */}
                   {jogos.map((jogo) => {
-                    const casa = porCodigo.get(jogo.time_casa_cod);
-                    const fora = porCodigo.get(jogo.time_fora_cod);
+                    const casa = jogo.time_casa_cod
+                      ? (porCodigo.get(jogo.time_casa_cod) ?? null)
+                      : null;
+                    const fora = jogo.time_fora_cod
+                      ? (porCodigo.get(jogo.time_fora_cod) ?? null)
+                      : null;
                     const placarReal =
                       jogo.placar_casa !== null && jogo.placar_fora !== null
                         ? `${jogo.placar_casa}-${jogo.placar_fora}`
@@ -244,25 +248,23 @@ export default async function GradePage({
                             {formatarHora(jogo.data_hora)}
                           </span>
                           <div className="flex items-center gap-1">
-                            <Bandeira
-                              iso2={casa?.iso2 ?? null}
-                              nome={casa?.nome ?? jogo.time_casa_cod}
-                              width={16}
-                            />
-                            <span className="text-table-header font-table-header text-on-surface">
-                              {jogo.time_casa_cod}
-                            </span>
+                            {casa ? (
+                              <LadoTime selecao={casa} width={16} />
+                            ) : (
+                              <span className="text-table-header font-table-header text-text-secondary truncate max-w-[60px]">
+                                {jogo.rotulo_casa ?? "A definir"}
+                              </span>
+                            )}
                             <span className="text-[9px] text-text-secondary">
                               x
                             </span>
-                            <span className="text-table-header font-table-header text-on-surface">
-                              {jogo.time_fora_cod}
-                            </span>
-                            <Bandeira
-                              iso2={fora?.iso2 ?? null}
-                              nome={fora?.nome ?? jogo.time_fora_cod}
-                              width={16}
-                            />
+                            {fora ? (
+                              <LadoTime selecao={fora} width={16} />
+                            ) : (
+                              <span className="text-table-header font-table-header text-text-secondary truncate max-w-[60px]">
+                                {jogo.rotulo_fora ?? "A definir"}
+                              </span>
+                            )}
                           </div>
                           <span
                             className={`text-[10px] font-bold px-1.5 rounded tabular-data ${

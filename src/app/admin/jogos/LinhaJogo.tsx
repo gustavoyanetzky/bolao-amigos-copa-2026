@@ -39,9 +39,11 @@ interface RodadaLite {
 
 const FASES = [
   { valor: "grupos", rotulo: "Fase de grupos" },
+  { valor: "16avos", rotulo: "16-avos" },
   { valor: "oitavas", rotulo: "Oitavas" },
   { valor: "quartas", rotulo: "Quartas" },
   { valor: "semi", rotulo: "Semifinal" },
+  { valor: "terceiro", rotulo: "3º lugar" },
   { valor: "final", rotulo: "Final" },
 ] as const;
 
@@ -99,9 +101,9 @@ export default function LinhaJogo({
       {/* Corpo: times + placar / mini-form de resultado */}
       <div className="px-4 py-4">
         <div className="flex items-center justify-between gap-2">
-          <TimeBloco selecao={casa} />
+          <TimeBloco selecao={casa} rotulo={jogo.rotulo_casa} />
           <PlacarResultado jogo={jogo} />
-          <TimeBloco selecao={fora} />
+          <TimeBloco selecao={fora} rotulo={jogo.rotulo_fora} />
         </div>
       </div>
 
@@ -156,16 +158,26 @@ export default function LinhaJogo({
 
 function TimeBloco({
   selecao,
+  rotulo,
 }: {
   selecao: { codigo: string; nome: string; iso2: string | null } | null;
+  rotulo: string | null;
 }) {
-  const cod = selecao?.codigo ?? "—";
-  const nome = selecao?.nome ?? "Seleção";
+  // Mata-mata sem time definido: mostra o rotulo de vaga (texto, sem bandeira).
+  if (!selecao) {
+    return (
+      <div className="flex w-[34%] flex-col items-center justify-center gap-2">
+        <span className="text-body-md leading-tight text-text-secondary text-center">
+          {rotulo ?? "A definir"}
+        </span>
+      </div>
+    );
+  }
   return (
     <div className="flex w-[34%] flex-col items-center gap-2">
-      <Bandeira iso2={selecao?.iso2 ?? null} nome={nome} width={40} />
+      <Bandeira iso2={selecao.iso2} nome={selecao.nome} width={40} />
       <span className="text-body-lg font-semibold leading-tight text-text-primary">
-        {cod}
+        {selecao.codigo}
       </span>
     </div>
   );
@@ -352,10 +364,11 @@ function FormEditarJogo({
         <Campo label="Seleção casa">
           <select
             name="time_casa_cod"
-            defaultValue={jogo.time_casa_cod}
+            defaultValue={jogo.time_casa_cod ?? ""}
             required
             className={INPUT_CLASS}
           >
+            <option value="">—</option>
             {selecoes.map((s) => (
               <option key={s.codigo} value={s.codigo}>
                 {s.nome}
@@ -366,10 +379,11 @@ function FormEditarJogo({
         <Campo label="Seleção fora">
           <select
             name="time_fora_cod"
-            defaultValue={jogo.time_fora_cod}
+            defaultValue={jogo.time_fora_cod ?? ""}
             required
             className={INPUT_CLASS}
           >
+            <option value="">—</option>
             {selecoes.map((s) => (
               <option key={s.codigo} value={s.codigo}>
                 {s.nome}

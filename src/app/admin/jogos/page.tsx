@@ -19,9 +19,11 @@ export const dynamic = "force-dynamic";
 
 const ROTULO_FASE: Record<Fase, string> = {
   grupos: "Fase de grupos",
+  "16avos": "16-avos",
   oitavas: "Oitavas",
   quartas: "Quartas",
   semi: "Semifinal",
+  terceiro: "3º lugar",
   final: "Final",
 };
 
@@ -108,8 +110,12 @@ export default async function AdminJogosPage({
         )}
 
         {jogos.map((jogo) => {
-          const casa = porCodigo.get(jogo.time_casa_cod) ?? null;
-          const fora = porCodigo.get(jogo.time_fora_cod) ?? null;
+          const casa = jogo.time_casa_cod
+            ? (porCodigo.get(jogo.time_casa_cod) ?? null)
+            : null;
+          const fora = jogo.time_fora_cod
+            ? (porCodigo.get(jogo.time_fora_cod) ?? null)
+            : null;
           return (
             <LinhaJogo
               key={jogo.id}
