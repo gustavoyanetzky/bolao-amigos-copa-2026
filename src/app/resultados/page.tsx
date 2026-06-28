@@ -11,8 +11,9 @@ import Icon from "@/components/Icon";
 import { createAnonClient } from "@/lib/supabase/anon";
 import type { Fase, Jogo, Rodada, Selecao } from "@/lib/types";
 
-// Leitura publica (RLS): cacheavel via ISR, revalidada on-demand pelas actions.
-export const revalidate = 60;
+// Leitura publica (RLS). Sempre fresca: o cache ISR fazia mudancas recem
+// salvas pelo admin nao aparecerem. Render dinamico garante reflexo do DB.
+export const dynamic = "force-dynamic";
 
 // Nome legivel da fase (mata-mata nao tem grupo).
 const ROTULO_FASE: Record<Fase, string> = {
@@ -58,7 +59,8 @@ export default async function ResultadosPage() {
       .select(
         "id, rodada_id, fase, grupo, time_casa_cod, time_fora_cod, rotulo_casa, rotulo_fora, classico, invalidado, data_hora, placar_casa, placar_fora, encerrado, created_at",
       )
-      .order("data_hora", { ascending: true }),
+      .order("data_hora", { ascending: true })
+      .returns<Jogo[]>(),
     supabase.from("selecoes").select("codigo, nome, iso2, emoji"),
   ]);
 

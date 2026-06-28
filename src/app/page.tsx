@@ -17,8 +17,9 @@ import {
 import { createAnonClient } from "@/lib/supabase/anon";
 import type { Config, ParticipantePublico, Selecao } from "@/lib/types";
 
-// Leitura publica (RLS): cacheavel via ISR, revalidada on-demand pelas actions.
-export const revalidate = 60;
+// Leitura publica (RLS). Sempre fresca: o cache ISR fazia mudancas recem
+// salvas pelo admin nao aparecerem. Render dinamico garante reflexo do DB.
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const supabase = createAnonClient();

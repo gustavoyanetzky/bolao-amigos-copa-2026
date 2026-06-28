@@ -25,8 +25,10 @@ import type {
 } from "@/lib/types";
 import Link from "next/link";
 
-// Leitura publica (RLS): cacheavel via ISR, revalidada on-demand pelas actions.
-export const revalidate = 60;
+// Leitura publica (RLS). Sempre fresca: o cache ISR fazia palpites recem
+// salvos pelo admin nao aparecerem (revalidatePath nao furava o cache de
+// forma confiavel). Render dinamico garante que a grade reflita o DB.
+export const dynamic = "force-dynamic";
 
 /** Mapa codigo -> selecao, para resolver bandeiras/nomes nas colunas. */
 function indexarSelecoes(selecoes: Selecao[]): Map<string, Selecao> {
