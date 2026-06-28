@@ -235,6 +235,7 @@ export default async function GradePage({
           rodadas={rodadas.map((r) => ({ id: r.id, nome: r.nome }))}
           selecionadaId={rodadaSelecionada?.id ?? null}
           atualId={rodadaAtual?.id ?? null}
+          basePath="/grade"
         />
 
         {/* Matriz densa: 1a coluna sticky, demais = jogos da rodada */}
