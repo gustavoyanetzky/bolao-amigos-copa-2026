@@ -63,6 +63,14 @@ export interface Jogo {
   placar_fora: number | null;
   encerrado: boolean;
   created_at: string;
+  // Mata-mata: numero FIFA (73..104), penaltis (so quando empate) e ligacoes
+  // do chaveamento (vencedor avanca; perdedor das semis vai pro 3o lugar).
+  numero: number | null;
+  penaltis_casa: number | null;
+  penaltis_fora: number | null;
+  avanca_para_jogo_id: string | null;
+  avanca_para_slot: "casa" | "fora" | null;
+  perdedor_para_jogo_id: string | null;
 }
 
 export interface Palpite {

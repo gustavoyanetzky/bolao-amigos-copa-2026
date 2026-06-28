@@ -204,12 +204,30 @@ function StatusPill({
   );
 }
 
-/** Placar: mini-form casa x fora (lancar/editar resultado). */
+const PLACAR_INPUT_CLASS =
+  "h-11 w-11 rounded-lg border border-border bg-surface-container-low text-center text-headline-md font-semibold tabular-data text-text-primary outline-none focus:border-primary focus:ring-1 focus:ring-primary";
+
+const PENALTI_INPUT_CLASS =
+  "h-8 w-8 rounded-md border border-border bg-surface-container-low text-center text-body-md font-semibold tabular-data text-text-primary outline-none focus:border-primary focus:ring-1 focus:ring-primary";
+
+/** So digitos, max 2 chars (espelha a sanitizacao do servidor). */
+function soDigitos(v: string): string {
+  return v.replace(/\D/g, "").slice(0, 2);
+}
+
+/** Placar: mini-form casa x fora (lancar/editar resultado). No mata-mata,
+ * empate revela os campos de penaltis (obrigatorios p/ definir o vencedor). */
 function PlacarResultado({ jogo }: { jogo: Jogo }) {
   const [state, formAction] = useActionState<JogoActionState, FormData>(
     lancarResultado,
     undefined,
   );
+
+  const mataMata = jogo.fase != null && jogo.fase !== "grupos";
+  const [casa, setCasa] = useState(jogo.placar_casa?.toString() ?? "");
+  const [fora, setFora] = useState(jogo.placar_fora?.toString() ?? "");
+  const empate = casa !== "" && fora !== "" && Number(casa) === Number(fora);
+  const mostrarPenaltis = mataMata && empate;
 
   return (
     <form
@@ -224,9 +242,10 @@ function PlacarResultado({ jogo }: { jogo: Jogo }) {
           inputMode="numeric"
           pattern="[0-9]*"
           maxLength={2}
-          defaultValue={jogo.placar_casa ?? ""}
+          value={casa}
+          onChange={(e) => setCasa(soDigitos(e.target.value))}
           aria-label="Placar casa"
-          className="h-11 w-11 rounded-lg border border-border bg-surface-container-low text-center text-headline-md font-semibold tabular-data text-text-primary outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+          className={PLACAR_INPUT_CLASS}
         />
         <span className="text-body-md text-text-secondary">x</span>
         <input
@@ -235,11 +254,44 @@ function PlacarResultado({ jogo }: { jogo: Jogo }) {
           inputMode="numeric"
           pattern="[0-9]*"
           maxLength={2}
-          defaultValue={jogo.placar_fora ?? ""}
+          value={fora}
+          onChange={(e) => setFora(soDigitos(e.target.value))}
           aria-label="Placar fora"
-          className="h-11 w-11 rounded-lg border border-border bg-surface-container-low text-center text-headline-md font-semibold tabular-data text-text-primary outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+          className={PLACAR_INPUT_CLASS}
         />
       </div>
+
+      {mostrarPenaltis && (
+        <div className="flex flex-col items-center gap-1">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-tertiary">
+            Pênaltis
+          </span>
+          <div className="flex items-center justify-center gap-1.5">
+            <input
+              name="penaltis_casa"
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={2}
+              defaultValue={jogo.penaltis_casa ?? ""}
+              aria-label="Pênaltis casa"
+              className={PENALTI_INPUT_CLASS}
+            />
+            <span className="text-label-sm text-text-secondary">x</span>
+            <input
+              name="penaltis_fora"
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={2}
+              defaultValue={jogo.penaltis_fora ?? ""}
+              aria-label="Pênaltis fora"
+              className={PENALTI_INPUT_CLASS}
+            />
+          </div>
+        </div>
+      )}
+
       <SubmitButton
         pendingLabel="…"
         className="bg-primary px-3 py-1 text-on-primary hover:opacity-90"

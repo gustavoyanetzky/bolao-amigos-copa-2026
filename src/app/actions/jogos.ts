@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { recalcularJogo } from "@/lib/recalcular";
+import { propagarVencedor } from "@/lib/bracket";
 import type { Fase } from "@/lib/types";
 
 /**
@@ -248,11 +249,41 @@ export async function lancarResultado(
   }
 
   const supabase = await createClient();
+
+  // Mata-mata precisa de vencedor: em empate, exige penaltis (sem empate
+  // nos penaltis). Fora do mata-mata, empate e valido e penaltis fica null.
+  const { data: jogoAtual } = await supabase
+    .from("jogos")
+    .select("fase")
+    .eq("id", id)
+    .single<{ fase: Fase | null }>();
+  const mataMata = jogoAtual?.fase != null && jogoAtual.fase !== "grupos";
+  const empate = casa.valor === fora.valor;
+
+  let penaltis_casa: number | null = null;
+  let penaltis_fora: number | null = null;
+  if (mataMata && empate) {
+    const pc = lerInteiroNaoNegativo(formData.get("penaltis_casa"));
+    const pf = lerInteiroNaoNegativo(formData.get("penaltis_fora"));
+    if (!pc.ok || !pf.ok) {
+      return {
+        error: "Empate no mata-mata: informe os pênaltis das duas seleções.",
+      };
+    }
+    if (pc.valor === pf.valor) {
+      return { error: "Os pênaltis não podem empatar — defina um vencedor." };
+    }
+    penaltis_casa = pc.valor;
+    penaltis_fora = pf.valor;
+  }
+
   const { error } = await supabase
     .from("jogos")
     .update({
       placar_casa: casa.valor,
       placar_fora: fora.valor,
+      penaltis_casa,
+      penaltis_fora,
       encerrado: true,
     })
     .eq("id", id);
@@ -261,6 +292,8 @@ export async function lancarResultado(
 
   // Resultado lancado/editado -> recomputa pontos dos palpites do jogo.
   await recalcularJogo(supabase, id);
+  // Mata-mata: propaga o vencedor (e o perdedor das semis) pro jogo seguinte.
+  await propagarVencedor(supabase, id);
 
   revalidarJogos();
   return undefined;
