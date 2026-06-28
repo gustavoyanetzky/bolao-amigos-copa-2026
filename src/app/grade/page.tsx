@@ -16,6 +16,7 @@ import PublicBottomNav from "@/components/PublicBottomNav";
 import PublicHeader from "@/components/PublicHeader";
 import { createAnonClient } from "@/lib/supabase/anon";
 import { buscarTodos } from "@/lib/supabase/paginacao";
+import SeletorRodadas from "./SeletorRodadas";
 import type {
   Config,
   Jogo,
@@ -77,6 +78,7 @@ export default async function GradePage({
     { data: selecoesData },
     { data: participantesData },
     todosPalpites,
+    { data: jogosDatasData },
   ] = await Promise.all([
     supabase
       .from("rodadas")
@@ -99,6 +101,11 @@ export default async function GradePage({
         .order("id", { ascending: true })
         .range(from, to),
     ),
+    // Datas de todos os jogos (leve) p/ achar a "rodada de hoje".
+    supabase
+      .from("jogos")
+      .select("rodada_id, data_hora")
+      .returns<{ rodada_id: string; data_hora: string }[]>(),
   ]);
 
   const rodadas = rodadasData ?? [];
@@ -106,9 +113,26 @@ export default async function GradePage({
   const participantes = participantesData ?? [];
   const porCodigo = indexarSelecoes(selecoes);
 
-  // Rodada selecionada: a do query string (se valida) ou a primeira por ordem.
+  // Rodada "atual": a primeira (em ordem) cujo ultimo jogo ainda nao passou.
+  // Se a Copa ja acabou, cai na ultima rodada.
+  const agora = Date.now();
+  const ultimoJogoPorRodada = new Map<string, number>();
+  for (const j of jogosDatasData ?? []) {
+    const t = new Date(j.data_hora).getTime();
+    const max = ultimoJogoPorRodada.get(j.rodada_id);
+    if (max === undefined || t > max) ultimoJogoPorRodada.set(j.rodada_id, t);
+  }
+  const rodadaAtual =
+    rodadas.find((r) => {
+      const max = ultimoJogoPorRodada.get(r.id);
+      return max !== undefined && max >= agora;
+    }) ??
+    rodadas[rodadas.length - 1] ??
+    null;
+
+  // Rodada selecionada: o query string (se valido); senao a rodada de hoje.
   const rodadaSelecionada =
-    rodadas.find((r) => r.id === rodadaParam) ?? rodadas[0] ?? null;
+    rodadas.find((r) => r.id === rodadaParam) ?? rodadaAtual ?? rodadas[0] ?? null;
 
   // Jogos da rodada filtrada (colunas da grade).
   let jogos: Jogo[] = [];
@@ -205,6 +229,13 @@ export default async function GradePage({
             </span>
           )}
         </div>
+
+        {/* Chips rolaveis: pula direto pra qualquer rodada (• = rodada de hoje) */}
+        <SeletorRodadas
+          rodadas={rodadas.map((r) => ({ id: r.id, nome: r.nome }))}
+          selecionadaId={rodadaSelecionada?.id ?? null}
+          atualId={rodadaAtual?.id ?? null}
+        />
 
         {/* Matriz densa: 1a coluna sticky, demais = jogos da rodada */}
         {participantes.length === 0 || jogos.length === 0 ? (
