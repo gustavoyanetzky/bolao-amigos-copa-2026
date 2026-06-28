@@ -21,10 +21,12 @@ function formatarPrazo(iso: string | null): string {
   const data = d.toLocaleDateString("pt-BR", {
     day: "2-digit",
     month: "2-digit",
+    timeZone: "America/Sao_Paulo",
   });
   const hora = d.toLocaleTimeString("pt-BR", {
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: "America/Sao_Paulo",
   });
   return `${data} às ${hora}`;
 }
