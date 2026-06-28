@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { recalcularJogo } from "@/lib/recalcular";
 import { propagarVencedor } from "@/lib/bracket";
+import { atualizarSnapshotSeNovoDia } from "@/lib/ranking-snapshot";
 import type { Fase } from "@/lib/types";
 
 /**
@@ -276,6 +277,10 @@ export async function lancarResultado(
     penaltis_casa = pc.valor;
     penaltis_fora = pf.valor;
   }
+
+  // Antes de aplicar: se for o 1o resultado do dia, congela o ranking atual
+  // (= fim de ontem) como referencia p/ as setas de movimento na home.
+  await atualizarSnapshotSeNovoDia(supabase);
 
   const { error } = await supabase
     .from("jogos")

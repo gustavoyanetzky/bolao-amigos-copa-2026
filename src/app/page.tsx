@@ -33,6 +33,7 @@ export default async function Home() {
     { data: jogos },
     { data: rodadas },
     { data: selecoes },
+    snapshotRes,
   ] = await Promise.all([
     supabase
       .from("config")
@@ -75,7 +76,13 @@ export default async function Home() {
       .from("selecoes")
       .select("codigo, nome, iso2, emoji")
       .returns<Selecao[]>(),
+    // Referencia do movimento (posicao no fim de ontem) p/ as setas.
+    supabase
+      .from("ranking_snapshot")
+      .select("participante_id, posicao")
+      .returns<{ participante_id: string; posicao: number }[]>(),
   ]);
+  const snapshot = snapshotRes.data ?? [];
 
   // Sem config nao ha como ranquear — exibe estado vazio defensivo.
   if (!config) {
@@ -139,6 +146,13 @@ export default async function Home() {
     );
   }
 
+  // Movimento do ranking (vs referencia = fim de ontem). So mostra setas se
+  // ja existe referencia; quem nao esta na referencia (entrou depois) = "novo".
+  const posAnterior = new Map<string, number>(
+    snapshot.map((s) => [s.participante_id, s.posicao]),
+  );
+  const temReferencia = snapshot.length > 0;
+
   // So revela a selecao campea palpitada apos o prazo do campeao.
   const prazoPassou =
     config.prazo_campeao != null &&
@@ -193,6 +207,14 @@ export default async function Home() {
                   ? selecaoPorCodigo.get(codCampea)
                   : undefined;
 
+                // Movimento vs referencia (fim de ontem): undefined = sem
+                // referencia ainda; null = novo; numero = posicoes ganhas.
+                const mov = !temReferencia
+                  ? undefined
+                  : posAnterior.has(linha.id)
+                    ? posAnterior.get(linha.id)! - linha.posicao
+                    : null;
+
                 return (
                   <div
                     key={linha.id}
@@ -204,6 +226,7 @@ export default async function Home() {
                     {/* Participante + sublinha de stats */}
                     <div className="flex flex-col pl-2 min-w-0">
                       <span className="flex items-center gap-1.5 min-w-0">
+                        <MovimentoRanking delta={mov} />
                         {prazoPassou && selCampea ? (
                           <Bandeira
                             iso2={selCampea.iso2}
@@ -259,5 +282,49 @@ export default async function Home() {
       </main>
       <PublicBottomNav />
     </>
+  );
+}
+
+/**
+ * Seta de movimento do ranking vs a referencia (fim de ontem).
+ * delta: undefined = sem referencia (nao mostra); null = novo;
+ * >0 subiu, <0 caiu, 0 manteve.
+ */
+function MovimentoRanking({ delta }: { delta: number | null | undefined }) {
+  if (delta === undefined) return null;
+
+  if (delta === null) {
+    return (
+      <span
+        className="shrink-0 text-[9px] font-bold uppercase tracking-wide text-tertiary"
+        title="Novo no ranking"
+      >
+        novo
+      </span>
+    );
+  }
+
+  if (delta === 0) {
+    return (
+      <span
+        className="shrink-0 text-[11px] leading-none text-text-secondary"
+        aria-label="Manteve a posição"
+      >
+        –
+      </span>
+    );
+  }
+
+  const subiu = delta > 0;
+  return (
+    <span
+      className={`shrink-0 inline-flex items-center text-[10px] font-bold leading-none tabular-data ${
+        subiu ? "text-success-emerald" : "text-error-red"
+      }`}
+      aria-label={subiu ? `Subiu ${delta} posição(ões)` : `Caiu ${-delta} posição(ões)`}
+    >
+      {subiu ? "▲" : "▼"}
+      {Math.abs(delta)}
+    </span>
   );
 }
