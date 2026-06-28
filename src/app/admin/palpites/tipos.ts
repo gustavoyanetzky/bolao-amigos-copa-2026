@@ -25,3 +25,36 @@ export interface LinhaPalpite {
   pontos: number;
   cravada: boolean;
 }
+
+/** Opcao de palpiteiro no seletor (modo "Por palpiteiro"). */
+export interface PalpiteiroOpcao {
+  id: string;
+  nome: string;
+}
+
+/** Lado de um jogo ja resolvido p/ render (selecao ou rotulo de vaga). */
+export interface LadoJogo {
+  codigo: string | null;
+  nome: string | null;
+  iso2: string | null;
+  rotulo: string | null;
+}
+
+/**
+ * Linha do grid no modo "Por palpiteiro": um JOGO da rodada + o palpite do
+ * palpiteiro fixo para esse jogo (se houver).
+ */
+export interface LinhaJogoPalpite {
+  jogoId: string;
+  casa: LadoJogo;
+  fora: LadoJogo;
+  hora: string;
+  encerrado: boolean;
+  palpiteCasa: number | null;
+  palpiteFora: number | null;
+  wo: boolean;
+  /** true se ja existe registro (palpite ou WO) p/ este palpiteiro/jogo. */
+  temRegistro: boolean;
+  pontos: number;
+  cravada: boolean;
+}

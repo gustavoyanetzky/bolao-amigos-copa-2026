@@ -21,12 +21,20 @@ export default function SeletorRodadas({
   selecionadaId,
   atualId,
   basePath,
+  params,
 }: {
   rodadas: RodadaChip[];
   selecionadaId: string | null;
   atualId: string | null;
   basePath: string;
+  /** Params de query extras (serializaveis) preservados em cada chip. */
+  params?: Record<string, string>;
 }) {
+  // Monta `${basePath}?<params...>&rodada=<id>` com tudo serializavel.
+  function hrefRodada(id: string): string {
+    const qs = new URLSearchParams({ ...(params ?? {}), rodada: id });
+    return `${basePath}?${qs.toString()}`;
+  }
   const ativoRef = useRef<HTMLAnchorElement | null>(null);
 
   // Centraliza o chip selecionado a cada navegacao (sem rolar a pagina).
@@ -51,7 +59,7 @@ export default function SeletorRodadas({
           return (
             <Link
               key={r.id}
-              href={`${basePath}?rodada=${r.id}`}
+              href={hrefRodada(r.id)}
               ref={ativa ? ativoRef : undefined}
               aria-current={ativa ? "page" : undefined}
               className={`flex items-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1.5 text-label-sm font-medium transition-colors ${

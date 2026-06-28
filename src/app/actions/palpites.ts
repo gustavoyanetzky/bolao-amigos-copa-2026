@@ -146,6 +146,58 @@ export async function limparPalpite(
 }
 
 /**
+ * Atalho (modo "Por palpiteiro"): marca como WO os jogos da lista em que o
+ * participante ainda NAO tem registro (palpite nem WO). Nunca sobrescreve quem
+ * ja tem palpite. Recalcula cada jogo afetado. Helper manual — nunca automatico.
+ */
+export async function marcarFaltantesWOParticipante(
+  participanteId: string,
+  jogoIds: string[],
+): Promise<PalpiteState> {
+  if (!participanteId) {
+    return { ok: false, error: "Participante é obrigatório." };
+  }
+  if (jogoIds.length === 0) {
+    return { ok: true };
+  }
+
+  const supabase = await createClient();
+
+  const { data: existentes, error: errPalp } = await supabase
+    .from("palpites")
+    .select("jogo_id")
+    .eq("participante_id", participanteId)
+    .in("jogo_id", jogoIds)
+    .returns<Pick<Palpite, "jogo_id">[]>();
+  if (errPalp) {
+    return { ok: false, error: "Não foi possível carregar palpites existentes." };
+  }
+
+  const jaTem = new Set((existentes ?? []).map((p) => p.jogo_id));
+  const faltantes = jogoIds.filter((id) => !jaTem.has(id));
+
+  if (faltantes.length > 0) {
+    const linhas = faltantes.map((jogoId) => ({
+      participante_id: participanteId,
+      jogo_id: jogoId,
+      palpite_casa: null,
+      palpite_fora: null,
+      wo: true,
+    }));
+    const { error } = await supabase.from("palpites").insert(linhas);
+    if (error) {
+      return { ok: false, error: "Não foi possível marcar os faltantes como WO." };
+    }
+    for (const jogoId of faltantes) {
+      await recalcularJogo(supabase, jogoId);
+    }
+  }
+
+  revalidarPalpites();
+  return { ok: true };
+}
+
+/**
  * Atalho: marca como WO todos os participantes que ainda NAO tem registro
  * (palpite nem WO) para o jogo. Nunca sobrescreve quem ja tem palpite.
  * Depois recalcula o jogo. Helper manual — nunca automatico.
