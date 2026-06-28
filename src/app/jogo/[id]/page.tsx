@@ -202,15 +202,28 @@ export default async function Page({
             {/* Placar / horario */}
             <div className="flex flex-col items-center gap-1 shrink-0 px-2">
               {jogo.encerrado ? (
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl font-headline-lg text-primary tabular-nums">
-                    {jogo.placar_casa ?? 0}
-                  </span>
-                  <span className="text-text-secondary font-bold">-</span>
-                  <span className="text-3xl font-headline-lg text-primary tabular-nums">
-                    {jogo.placar_fora ?? 0}
-                  </span>
-                </div>
+                <>
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl font-headline-lg text-primary tabular-nums">
+                      {jogo.placar_casa ?? 0}
+                    </span>
+                    <span className="text-text-secondary font-bold">-</span>
+                    <span className="text-3xl font-headline-lg text-primary tabular-nums">
+                      {jogo.placar_fora ?? 0}
+                    </span>
+                  </div>
+                  {jogo.penaltis_casa !== null &&
+                  jogo.penaltis_fora !== null ? (
+                    <span className="text-label-sm font-bold uppercase tracking-wide text-tertiary tabular-data">
+                      pênaltis {jogo.penaltis_casa}–{jogo.penaltis_fora}
+                      {" · "}
+                      {(jogo.penaltis_casa > jogo.penaltis_fora
+                        ? jogo.time_casa_cod
+                        : jogo.time_fora_cod) ?? ""}{" "}
+                      avança
+                    </span>
+                  ) : null}
+                </>
               ) : (
                 <>
                   <span className="text-headline-md font-headline-md text-primary">

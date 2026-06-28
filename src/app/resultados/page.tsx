@@ -66,7 +66,7 @@ export default async function ResultadosPage({
     supabase
       .from("jogos")
       .select(
-        "id, rodada_id, fase, grupo, time_casa_cod, time_fora_cod, rotulo_casa, rotulo_fora, classico, invalidado, data_hora, placar_casa, placar_fora, encerrado, created_at",
+        "id, rodada_id, fase, grupo, time_casa_cod, time_fora_cod, rotulo_casa, rotulo_fora, classico, invalidado, data_hora, placar_casa, placar_fora, penaltis_casa, penaltis_fora, encerrado, created_at",
       )
       .order("data_hora", { ascending: true })
       .returns<Jogo[]>(),
@@ -255,10 +255,22 @@ export default async function ResultadosPage({
 
                       {/* Caixa central: placar (encerrado) ou horario */}
                       {jogo.encerrado ? (
-                        <div className="bg-surface-container-high border border-border rounded-lg flex items-center justify-center px-6 py-2 shadow-inner">
-                          <span className="text-headline-lg font-headline-lg text-brand-cream tabular-data tracking-widest">
-                            {jogo.placar_casa ?? 0} - {jogo.placar_fora ?? 0}
-                          </span>
+                        <div className="flex flex-col items-center gap-0.5">
+                          <div className="bg-surface-container-high border border-border rounded-lg flex items-center justify-center px-6 py-2 shadow-inner">
+                            <span className="text-headline-lg font-headline-lg text-brand-cream tabular-data tracking-widest">
+                              {jogo.placar_casa ?? 0} - {jogo.placar_fora ?? 0}
+                            </span>
+                          </div>
+                          {jogo.penaltis_casa !== null &&
+                          jogo.penaltis_fora !== null ? (
+                            <span className="text-[10px] font-bold uppercase tracking-wide text-tertiary tabular-data">
+                              pên {jogo.penaltis_casa}-{jogo.penaltis_fora}
+                              {" · "}
+                              {(jogo.penaltis_casa > jogo.penaltis_fora
+                                ? jogo.time_casa_cod
+                                : jogo.time_fora_cod) ?? ""}
+                            </span>
+                          ) : null}
                         </div>
                       ) : (
                         <div className="bg-surface-container border border-border rounded-lg flex flex-col items-center justify-center px-4 py-1.5">
