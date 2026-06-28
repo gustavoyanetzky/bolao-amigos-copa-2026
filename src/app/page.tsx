@@ -15,6 +15,7 @@ import {
   type ParticipanteRanking,
 } from "@/lib/ranking";
 import { createAnonClient } from "@/lib/supabase/anon";
+import { buscarTodos } from "@/lib/supabase/paginacao";
 import type { Config, ParticipantePublico, Selecao } from "@/lib/types";
 
 // Leitura publica (RLS). Sempre fresca: o cache ISR fazia mudancas recem
@@ -28,7 +29,7 @@ export default async function Home() {
   const [
     { data: config },
     { data: participantes },
-    { data: palpites },
+    palpites,
     { data: jogos },
     { data: rodadas },
     { data: selecoes },
@@ -53,10 +54,15 @@ export default async function Home() {
       .from("participantes_publico")
       .select("id, nome, selecao_campea")
       .returns<ParticipantePublico[]>(),
-    supabase
-      .from("palpites")
-      .select("participante_id, jogo_id, pontos, cravada, wo")
-      .returns<PalpiteRanking[]>(),
+    // Paginado: o ranking soma TODOS os palpites e ja passam de 1000 (teto do
+    // PostgREST) — sem isso o total saia truncado/errado.
+    buscarTodos<PalpiteRanking>((from, to) =>
+      supabase
+        .from("palpites")
+        .select("participante_id, jogo_id, pontos, cravada, wo")
+        .order("id", { ascending: true })
+        .range(from, to),
+    ),
     supabase
       .from("jogos")
       .select("id, invalidado, rodada_id")

@@ -15,6 +15,7 @@ import CelulaGrade, { type EstadoCelula } from "@/components/CelulaGrade";
 import PublicBottomNav from "@/components/PublicBottomNav";
 import PublicHeader from "@/components/PublicHeader";
 import { createAnonClient } from "@/lib/supabase/anon";
+import { buscarTodos } from "@/lib/supabase/paginacao";
 import type {
   Config,
   Jogo,
@@ -75,7 +76,7 @@ export default async function GradePage({
     { data: rodadasData },
     { data: selecoesData },
     { data: participantesData },
-    { data: palpitesData },
+    todosPalpites,
   ] = await Promise.all([
     supabase
       .from("rodadas")
@@ -89,16 +90,20 @@ export default async function GradePage({
       .select("*")
       .order("nome", { ascending: true })
       .returns<ParticipantePublico[]>(),
-    supabase
-      .from("palpites")
-      .select("*")
-      .returns<Palpite[]>(),
+    // Paginado: o Total geral soma TODOS os palpites (> 1000, teto do
+    // PostgREST). Sem isso a grade vinha com celulas vazias e total errado.
+    buscarTodos<Palpite>((from, to) =>
+      supabase
+        .from("palpites")
+        .select("*")
+        .order("id", { ascending: true })
+        .range(from, to),
+    ),
   ]);
 
   const rodadas = rodadasData ?? [];
   const selecoes = selecoesData ?? [];
   const participantes = participantesData ?? [];
-  const todosPalpites = palpitesData ?? [];
   const porCodigo = indexarSelecoes(selecoes);
 
   // Rodada selecionada: a do query string (se valida) ou a primeira por ordem.
