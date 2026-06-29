@@ -43,7 +43,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-brand-navy-deep text-text-primary mx-auto w-full max-w-md">
+      <body className="min-h-full flex flex-col bg-brand-navy-deep text-text-primary mx-auto w-full max-w-md md:max-w-5xl">
         {children}
       </body>
     </html>

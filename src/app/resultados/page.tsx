@@ -128,7 +128,7 @@ export default async function ResultadosPage({
     <>
       <PublicHeader />
 
-      <main className="flex-1 w-full max-w-md mx-auto flex flex-col overflow-hidden pb-[calc(theme(spacing.bottom-nav-height)+1rem)]">
+      <main className="flex-1 w-full max-w-md md:max-w-5xl mx-auto flex flex-col overflow-hidden pb-[calc(theme(spacing.bottom-nav-height)+1rem)]">
         {/* Cabecalho da rodada: setas + nome */}
         <div className="flex-none px-edge-margin py-3 bg-surface-container-low flex justify-between items-center border-b border-border">
           {rodadaAnterior ? (

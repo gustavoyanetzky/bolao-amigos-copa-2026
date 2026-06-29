@@ -183,7 +183,7 @@ export default async function GradePage({
     <div className="min-h-screen flex flex-col bg-background text-on-background">
       <PublicHeader />
 
-      <main className="flex-1 w-full max-w-md mx-auto flex flex-col overflow-hidden pb-[calc(theme(spacing.bottom-nav-height)+1rem)]">
+      <main className="flex-1 w-full max-w-md md:max-w-5xl mx-auto flex flex-col overflow-hidden pb-[calc(theme(spacing.bottom-nav-height)+1rem)]">
         {/* Seletor de rodada */}
         <div className="flex-none px-edge-margin py-3 bg-surface-container-low flex justify-between items-center border-b border-border">
           {rodadaAnterior ? (

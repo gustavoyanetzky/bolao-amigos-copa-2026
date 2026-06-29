@@ -9,7 +9,7 @@ interface PublicHeaderProps {
 
 export default function PublicHeader({ atualizado }: PublicHeaderProps) {
   return (
-    <header className="bg-surface text-primary sticky top-0 z-50 w-full max-w-md mx-auto border-b border-border flex justify-between items-center px-edge-margin h-header-height">
+    <header className="bg-surface text-primary sticky top-0 z-50 w-full max-w-md md:max-w-5xl mx-auto border-b border-border flex justify-between items-center px-edge-margin h-header-height">
       <div className="flex items-center gap-3 min-w-0">
         <div className="w-8 h-8 rounded-full overflow-hidden bg-brand-cream flex items-center justify-center shrink-0 border border-border">
           {/* eslint-disable-next-line @next/next/no-img-element */}

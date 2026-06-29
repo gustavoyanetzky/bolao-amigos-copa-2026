@@ -27,7 +27,7 @@ export default async function AdminLayout({
   return (
     <div className="flex min-h-screen flex-col bg-brand-navy-deep">
       {/* Header sticky */}
-      <header className="sticky top-0 z-20 mx-auto flex h-header-height w-full max-w-md items-center justify-between border-b border-border bg-surface px-edge-margin">
+      <header className="sticky top-0 z-20 mx-auto flex h-header-height w-full max-w-md md:max-w-5xl items-center justify-between border-b border-border bg-surface px-edge-margin">
         <div className="flex items-center gap-2">
           <Image
             src="/escudo.jpg"
@@ -59,7 +59,7 @@ export default async function AdminLayout({
       </header>
 
       {/* Conteudo */}
-      <main className="mx-auto w-full max-w-md flex-1 px-edge-margin pb-[calc(var(--spacing-bottom-nav-height)+1rem)] pt-edge-margin">
+      <main className="mx-auto w-full max-w-md md:max-w-5xl flex-1 px-edge-margin pb-[calc(var(--spacing-bottom-nav-height)+1rem)] pt-edge-margin">
         {children}
       </main>
 

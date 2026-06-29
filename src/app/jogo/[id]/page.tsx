@@ -157,7 +157,7 @@ export default async function Page({
   ].filter(Boolean) as string[];
 
   return (
-    <div className="min-h-screen w-full max-w-md mx-auto bg-background flex flex-col">
+    <div className="min-h-screen w-full max-w-md md:max-w-3xl mx-auto bg-background flex flex-col">
       <PublicHeader />
 
       <main className="flex-1 w-full pb-[calc(theme(spacing.bottom-nav-height)+1rem)]">
