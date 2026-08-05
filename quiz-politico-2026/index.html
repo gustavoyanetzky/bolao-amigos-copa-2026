@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bússola 2026 — 30 perguntas para achar seu candidato</title>
+<meta name="description" content="Questionário de 30 perguntas que compara suas posições com as de Flávio Bolsonaro, Romeu Zema e Renan Santos na eleição presidencial de 2026." />
+<style>
+:root{
+  --paper:#eceeec;
+  --paper-2:#f6f7f6;
+  --ink:#12181a;
+  --ink-2:#3c4649;
+  --ink-3:#6b7679;
+  --rule:#cfd4d2;
+  --rule-2:#dde1df;
+  --accent:#0e6a68;
+  --accent-soft:#d6e5e2;
+  --warn:#9c3a26;
+  --warn-soft:#f0dcd6;
+  --c-f:#2f628f;
+  --c-z:#2f7a52;
+  --c-r:#8a6321;
+  --shadow:0 1px 0 rgba(18,24,26,.05), 0 8px 24px -18px rgba(18,24,26,.5);
+  --serif:ui-serif,"Iowan Old Style","Source Serif Pro","Charter",Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#0f1416;
+    --paper-2:#171d20;
+    --ink:#e7ebe9;
+    --ink-2:#b3bcb9;
+    --ink-3:#7d8a87;
+    --rule:#2a3336;
+    --rule-2:#222a2d;
+    --accent:#5cb8ae;
+    --accent-soft:#173634;
+    --warn:#e0836b;
+    --warn-soft:#33201a;
+    --c-f:#7aa9d6;
+    --c-z:#6bbd8c;
+    --c-r:#d3a457;
+    --shadow:0 1px 0 rgba(0,0,0,.3), 0 8px 24px -18px #000;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1416; --paper-2:#171d20; --ink:#e7ebe9; --ink-2:#b3bcb9; --ink-3:#7d8a87;
+  --rule:#2a3336; --rule-2:#222a2d; --accent:#5cb8ae; --accent-soft:#173634;
+  --warn:#e0836b; --warn-soft:#33201a; --c-f:#7aa9d6; --c-z:#6bbd8c; --c-r:#d3a457;
+  --shadow:0 1px 0 rgba(0,0,0,.3), 0 8px 24px -18px #000;
+}
+:root[data-theme="light"]{
+  --paper:#eceeec; --paper-2:#f6f7f6; --ink:#12181a; --ink-2:#3c4649; --ink-3:#6b7679;
+  --rule:#cfd4d2; --rule-2:#dde1df; --accent:#0e6a68; --accent-soft:#d6e5e2;
+  --warn:#9c3a26; --warn-soft:#f0dcd6; --c-f:#2f628f; --c-z:#2f7a52; --c-r:#8a6321;
+  --shadow:0 1px 0 rgba(18,24,26,.05), 0 8px 24px -18px rgba(18,24,26,.5);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:17px; line-height:1.55;
+  font-feature-settings:"kern";
+}
+.wrap{max-width:790px; margin:0 auto; padding:0 20px}
+
+/* ---------- header ---------- */
+.masthead{padding:56px 0 30px; border-bottom:1px solid var(--rule)}
+.eyebrow{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-3); margin:0 0 18px;
+}
+.eyebrow .dot{
+  width:5px; height:5px; border-radius:50%; background:var(--accent);
+  display:inline-block; vertical-align:middle; margin-right:9px; position:relative; top:-1px;
+}
+h1{
+  font-family:var(--serif); font-weight:600; font-size:clamp(34px,7vw,54px);
+  line-height:1.04; letter-spacing:-.02em; margin:0 0 18px; text-wrap:balance;
+}
+h1 em{font-style:italic; color:var(--accent)}
+.lede{font-size:18px; color:var(--ink-2); margin:0 0 6px; max-width:60ch}
+.lede + .lede{margin-top:14px}
+
+.brief{
+  margin:26px 0 0; padding:18px 20px; border:1px solid var(--rule);
+  background:var(--paper-2); border-radius:3px; box-shadow:var(--shadow);
+}
+.brief h2{font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin:0 0 10px; font-weight:500}
+.brief p{margin:0; font-size:15.5px; color:var(--ink-2)}
+.brief strong{color:var(--ink); font-weight:600}
+
+/* ---------- sticky progress ---------- */
+.bar{
+  position:sticky; top:0; z-index:30; background:var(--paper);
+  border-bottom:1px solid var(--rule);
+  transition:box-shadow .2s;
+}
+.bar.stuck{box-shadow:0 6px 20px -14px rgba(0,0,0,.55)}
+.bar-in{
+  max-width:790px; margin:0 auto; padding:11px 20px;
+  display:flex; align-items:center; gap:14px;
+}
+.count{font-family:var(--mono); font-size:13px; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap}
+.count b{color:var(--ink); font-weight:600}
+.track{flex:1; height:4px; background:var(--rule); border-radius:2px; overflow:hidden; min-width:40px}
+.track > i{display:block; height:100%; width:0; background:var(--accent); transition:width .25s ease}
+button{font:inherit; color:inherit; cursor:pointer}
+.btn{
+  border:1px solid var(--accent); background:var(--accent); color:var(--paper-2);
+  padding:8px 15px; border-radius:3px; font-size:14px; font-weight:600;
+  white-space:nowrap; transition:opacity .15s, transform .1s;
+}
+:root[data-theme="dark"] .btn, :root:not([data-theme="light"]) .btn{color:#0f1416}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .btn{color:#f6f7f6}}
+:root[data-theme="light"] .btn{color:#f6f7f6}
+.btn:hover{opacity:.88}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.35; cursor:not-allowed}
+.btn-ghost{background:transparent; color:var(--ink-2); border-color:var(--rule)}
+.btn-ghost:hover{border-color:var(--ink-3); opacity:1}
+
+/* ---------- blocks & questions ---------- */
+.block{padding:44px 0 8px}
+.block-head{display:flex; align-items:baseline; gap:12px; margin:0 0 6px; border-bottom:1px solid var(--rule); padding-bottom:10px}
+.block-num{font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em}
+.block-head h2{font-family:var(--serif); font-size:25px; font-weight:600; letter-spacing:-.01em; margin:0; flex:1}
+.block-sub{font-size:14.5px; color:var(--ink-3); margin:12px 0 0; max-width:62ch}
+
+.q{padding:26px 0; border-bottom:1px solid var(--rule-2)}
+.q:last-child{border-bottom:0}
+.q-top{display:flex; gap:13px; align-items:flex-start}
+.q-n{font-family:var(--mono); font-size:12.5px; color:var(--ink-3); padding-top:4px; font-variant-numeric:tabular-nums; flex:none; width:24px}
+.q-body{flex:1; min-width:0}
+.q-t{font-size:17.5px; line-height:1.42; margin:0; text-wrap:pretty}
+.q-meta{font-size:13.5px; color:var(--ink-3); margin:8px 0 0; font-style:italic}
+.q.answered .q-n{color:var(--accent)}
+
+.scale{display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin:15px 0 0}
+.opt{
+  border:1px solid var(--rule); background:var(--paper-2); border-radius:3px;
+  padding:9px 4px 8px; text-align:center; line-height:1.2;
+  font-size:11.5px; color:var(--ink-2); transition:border-color .12s, background .12s, color .12s;
+}
+.opt .g{display:block; font-family:var(--mono); font-size:14px; margin-bottom:3px; color:var(--ink-3)}
+.opt:hover{border-color:var(--ink-3)}
+.opt[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--paper-2); font-weight:600}
+.opt[aria-pressed="true"] .g{color:inherit}
+:root[data-theme="light"] .opt[aria-pressed="true"]{color:#f6f7f6}
+.opt:focus-visible, .btn:focus-visible, .star:focus-visible, .tog:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+.q-foot{display:flex; justify-content:flex-end; margin-top:10px}
+.star{
+  background:none; border:0; font-family:var(--mono); font-size:11.5px;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3);
+  padding:4px 2px; display:flex; gap:6px; align-items:center;
+}
+.star:hover{color:var(--ink-2)}
+.star .mk{
+  width:13px; height:13px; border:1.5px solid var(--ink-3); border-radius:2px;
+  display:inline-block; position:relative;
+}
+.star[aria-pressed="true"]{color:var(--warn)}
+.star[aria-pressed="true"] .mk{background:var(--warn); border-color:var(--warn)}
+.star[aria-pressed="true"] .mk::after{
+  content:""; position:absolute; inset:2px 3px; border:2px solid var(--paper-2);
+  border-top:0; border-right:0; transform:rotate(-45deg) translate(1px,-1px);
+}
+
+/* ---------- results ---------- */
+#res{display:none; padding:10px 0 70px}
+#res.on{display:block}
+.res-head{padding:46px 0 24px; border-bottom:2px solid var(--ink)}
+.res-head h2{font-family:var(--serif); font-size:clamp(28px,5.5vw,40px); font-weight:600; letter-spacing:-.02em; margin:0 0 12px; line-height:1.08}
+.res-head p{margin:0; color:var(--ink-2); font-size:16px; max-width:60ch}
+
+.rank{display:flex; flex-direction:column; gap:0; margin:0}
+.card{padding:28px 0; border-bottom:1px solid var(--rule)}
+.card-top{display:flex; align-items:flex-start; gap:16px; flex-wrap:wrap}
+.pos{
+  font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-3); padding-top:7px; flex:none;
+}
+.card h3{font-family:var(--serif); font-size:27px; font-weight:600; margin:0; letter-spacing:-.01em; line-height:1.15}
+.party{font-family:var(--mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); display:block; margin-top:5px}
+.pct{margin-left:auto; text-align:right; flex:none}
+.pct b{font-family:var(--mono); font-size:34px; font-weight:600; letter-spacing:-.02em; font-variant-numeric:tabular-nums; display:block; line-height:1}
+.pct span{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
+.meter{height:7px; background:var(--rule); border-radius:4px; overflow:hidden; margin:16px 0 0}
+.meter > i{display:block; height:100%; width:0; border-radius:4px; transition:width .7s cubic-bezier(.2,.7,.3,1)}
+.cF .pct b, .cF h3{color:var(--c-f)} .cF .meter > i{background:var(--c-f)}
+.cZ .pct b, .cZ h3{color:var(--c-z)} .cZ .meter > i{background:var(--c-z)}
+.cR .pct b, .cR h3{color:var(--c-r)} .cR .meter > i{background:var(--c-r)}
+
+.subs{display:grid; grid-template-columns:repeat(auto-fit,minmax(112px,1fr)); gap:10px; margin:22px 0 0}
+.sub{border-top:1px solid var(--rule-2); padding-top:8px}
+.sub .lab{font-family:var(--mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:5px}
+.sub .val{display:block; font-family:var(--mono); font-size:15px; font-variant-numeric:tabular-nums; color:var(--ink-2); line-height:1.2}
+.sub .mini{display:block; height:3px; background:var(--rule); margin-top:6px; border-radius:2px; overflow:hidden}
+.sub .mini > i{display:block; height:100%; background:var(--ink-3)}
+
+.lists{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:24px 0 0}
+@media (max-width:640px){.lists{grid-template-columns:1fr; gap:18px}}
+.lists h4{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; margin:0 0 9px; font-weight:500; color:var(--ink-3)}
+.lists ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:9px}
+.lists li{font-size:14px; line-height:1.4; color:var(--ink-2); padding-left:13px; position:relative}
+.lists li::before{content:""; position:absolute; left:0; top:8px; width:5px; height:1.5px; background:var(--ink-3)}
+.lists .bad li::before{background:var(--warn); height:5px; border-radius:50%; top:6px; width:5px}
+.lists li em{font-style:normal; color:var(--ink-3); display:block; font-size:12.5px; margin-top:2px; font-family:var(--mono)}
+
+.flags{margin:24px 0 0; border-left:2px solid var(--warn); padding:2px 0 2px 16px; background:var(--warn-soft); border-radius:0 3px 3px 0}
+.flags{padding:14px 16px}
+.flags h4{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; margin:0 0 10px; color:var(--warn); font-weight:600}
+.flags ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:11px}
+.flags li{font-size:14.5px; line-height:1.45; color:var(--ink-2)}
+.flags li b{color:var(--ink); font-weight:600}
+
+/* profile */
+.profile{padding:38px 0 10px}
+.profile h3{font-family:var(--serif); font-size:24px; font-weight:600; margin:0 0 4px}
+.profile > p{color:var(--ink-2); font-size:15px; margin:0 0 22px; max-width:60ch}
+.ax{margin:0 0 20px}
+.ax-lab{display:flex; justify-content:space-between; font-family:var(--mono); font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3); margin-bottom:7px; gap:10px}
+.ax-lab .now{color:var(--ink); font-variant-numeric:tabular-nums}
+.ax-track{height:20px; background:var(--paper-2); border:1px solid var(--rule); border-radius:3px; position:relative; overflow:hidden}
+.ax-track::before{content:""; position:absolute; left:50%; top:0; bottom:0; width:1px; background:var(--rule)}
+.ax-track > i{position:absolute; top:3px; bottom:3px; width:3px; background:var(--accent); border-radius:2px; transition:left .6s cubic-bezier(.2,.7,.3,1)}
+
+.verdict{margin:34px 0 0; padding:24px; border:1px solid var(--rule); background:var(--paper-2); border-radius:3px; box-shadow:var(--shadow)}
+.verdict h3{font-family:var(--serif); font-size:22px; margin:0 0 12px; font-weight:600}
+.verdict p{margin:0 0 12px; font-size:15.5px; color:var(--ink-2)}
+.verdict p:last-child{margin-bottom:0}
+.verdict strong{color:var(--ink)}
+
+.sources{padding:36px 0 0; border-top:1px solid var(--rule); margin-top:40px}
+.sources h3{font-family:var(--mono); font-size:11.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); margin:0 0 14px; font-weight:500}
+.sources ol{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:7px}
+.sources li{font-size:13.5px; color:var(--ink-3); line-height:1.4}
+.sources a{color:var(--accent); text-decoration:none; border-bottom:1px solid transparent}
+.sources a:hover{border-bottom-color:var(--accent)}
+
+.actions{display:flex; gap:10px; flex-wrap:wrap; margin:34px 0 0}
+.foot{padding:34px 0 60px; color:var(--ink-3); font-size:13px; line-height:1.5; border-top:1px solid var(--rule); margin-top:34px}
+.tog{
+  position:fixed; right:14px; bottom:14px; z-index:40; width:38px; height:38px;
+  border-radius:50%; border:1px solid var(--rule); background:var(--paper-2);
+  color:var(--ink-2); font-size:15px; display:grid; place-items:center; box-shadow:var(--shadow);
+}
+@media (max-width:520px){
+  body{font-size:16px}
+  .opt{font-size:10.5px; padding:8px 2px}
+  .opt .g{font-size:13px}
+  .q-n{width:20px}
+  .q-top{gap:9px}
+  .tog{bottom:auto; top:8px; right:8px; width:32px; height:32px; font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important; animation:none !important}}
+</style>
+</head>
+<body>
+
+<button class="tog" id="tog" aria-label="Alternar tema claro e escuro">◐</button>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow"><span class="dot"></span> Bússola eleitoral · 1º turno em 4 de outubro de 2026</p>
+    <h1>Trinta perguntas antes de <em>decidir o voto</em></h1>
+    <p class="lede">Você se descreve como liberal na economia, conservador nos costumes, contra corrupção — e disposto a mudar de voto se os fatos mandarem. Este questionário transforma isso em números.</p>
+    <p class="lede">Cada resposta é comparada com a posição declarada de <strong>Flávio Bolsonaro</strong>, <strong>Romeu Zema</strong> e <strong>Renan Santos</strong>, apurada em propostas de campanha, entrevistas e histórico de atuação até agosto de 2026.</p>
+
+    <div class="brief">
+      <h2>Como funciona</h2>
+      <p>Responda de <b>−2</b> (discordo totalmente) a <b>+2</b> (concordo totalmente). Marque <strong>decisivo</strong> nas questões que sozinhas mudariam seu voto — elas valem o dobro. No fim, você recebe um ranking de afinidade, o mapa das suas próprias posições e, para cada candidato, o que ele fala <em>versus</em> o que ele fez.</p>
+    </div>
+  </div>
+</header>
+
+<div class="bar" id="bar">
+  <div class="bar-in">
+    <span class="count"><b id="cNow">0</b>/30</span>
+    <span class="track"><i id="cBar"></i></span>
+    <button class="btn" id="go" disabled>Ver resultado</button>
+  </div>
+</div>
+
+<main class="wrap" id="form"></main>
+
+<section class="wrap" id="res" aria-live="polite"></section>
+
+<script>
+"use strict";
+
+/* ============================================================
+   POSIÇÕES DOS CANDIDATOS
+   Escala −2 a +2 = quanto o candidato concorda com a afirmação.
+   inf: posição inferida do conjunto de declarações e do partido,
+        não de uma declaração literal sobre aquela frase.
+   ============================================================ */
+
+const CAND = {
+  F:{nome:"Flávio Bolsonaro", partido:"PL", cls:"cF"},
+  Z:{nome:"Romeu Zema",       partido:"Novo", cls:"cZ"},
+  R:{nome:"Renan Santos",     partido:"Missão", cls:"cR"}
+};
+
+const BLOCKS = [
+  {k:"A", short:"Economia",     t:"Economia e tamanho do Estado", s:"Onde os três mais se parecem — e por isso o que separa um do outro aqui é o histórico, não o discurso."},
+  {k:"B", short:"Costumes",     t:"Costumes e valores", s:"O bloco que mais separa os três candidatos. Preste atenção nas suas respostas de 7 a 11."},
+  {k:"C", short:"Segurança",    t:"Segurança pública", s:"Tema número um do eleitorado em 2026. Os três prometem dureza; divergem no grau de exceção que aceitam."},
+  {k:"D", short:"Instituições", t:"Corrupção, Justiça e instituições", s:"Você disse que corrupção é critério. Este bloco existe para testar até onde esse critério vai."},
+  {k:"E", short:"Mundo",        t:"Brasil no mundo", s:"Alinhamento externo, agenda ambiental e o que fazer com os minerais estratégicos."},
+  {k:"F", short:"Voto",         t:"Voto, coerência e estratégia", s:"Aqui não se mede ideologia, e sim como você decide: convicção, viabilidade ou ficha limpa."}
+];
+
+/* meta:true → a nota do candidato mede como ELE se sai nesse critério,
+   não uma posição que ele defende. */
+const Q = [
+{id:1,  b:"A", ax:"ECO", d:1,  t:"O Brasil deve privatizar a maior parte das estatais — incluindo Correios, bancos públicos e participações na Petrobras.",
+ pos:{F:2,Z:2,R:2}, inf:[]},
+{id:2,  b:"A", ax:"ECO", d:1,  t:"Precisamos de uma nova reforma da Previdência que inclua militares, estados e municípios, com idade mínima subindo junto com a expectativa de vida.",
+ pos:{F:1,Z:2,R:2}, inf:["F"], note:"Zema propõe isso explicitamente. Flávio fala em reforma administrativa e regra fiscal, mas não assume mexer na previdência militar — o governo do qual faz parte poupou os militares em 2019."},
+{id:3,  b:"A", ax:"ECO", d:1,  t:"Ajuste fiscal se faz cortando gasto público, nunca criando ou aumentando imposto — mesmo que doa politicamente.",
+ pos:{F:2,Z:2,R:2}, inf:[]},
+{id:4,  b:"A", ax:"ECO", d:1,  t:"A reforma administrativa deve acabar com a estabilidade automática, os supersalários e boa parte dos cargos de livre nomeação.",
+ pos:{F:2,Z:2,R:2}, inf:[]},
+{id:5,  b:"A", ax:"ECO", d:-1, t:"Programas de transferência de renda como o Bolsa Família devem ser mantidos — apenas mais bem focalizados, não cortados.",
+ pos:{F:2,Z:0,R:-1}, inf:["Z"], note:"Flávio defende explicitamente manter os programas sociais. Renan quer substituir o modelo atual. Zema fala em revisão e focalização sem se comprometer com a manutenção."},
+{id:6,  b:"A", ax:null, d:0,  t:"A reforma tributária já aprovada (o IVA) deve ser suspensa e refeita antes de entrar em vigor.",
+ pos:{F:2,Z:1,R:1}, inf:["Z","R"], note:"Flávio votou A FAVOR da reforma no Congresso e hoje promete suspendê-la por um ano e refazê-la, alegando que ela criou 'o maior IVA do mundo', perto de 30%."},
+
+{id:7,  b:"B", ax:"COS", d:1,  t:"A legislação do aborto não deve ser ampliada — e as regras do aborto legal precisam ser mais rígidas, não mais frouxas.",
+ pos:{F:2,Z:2,R:-1}, inf:[], note:"Divergência dura. Zema apoiou publicamente o projeto que dificulta o aborto legal em crianças e adolescentes. Renan Santos declarou-se favorável à legislação atual, incluindo as hipóteses autorizadas pelo STF."},
+{id:8,  b:"B", ax:"COS", d:1,  t:"Escola não é lugar de discutir gênero e sexualidade; isso é assunto da família.",
+ pos:{F:2,Z:2,R:1}, inf:["R"], note:"Zema, textualmente: 'escola é lugar de aprender Português, Matemática, Ciência, História, Geografia. E ideologia de gênero em nenhum momento. Isso tem que ser aprendido com a família.'"},
+{id:9,  b:"B", ax:"COS", d:1,  t:"O Brasil não deve avançar em descriminalização nem legalização de drogas, maconha inclusive.",
+ pos:{F:2,Z:1,R:0}, inf:["Z"], note:"Renan é contra legalizar a maconha 'no cenário atual' — primeiro destruir o crime organizado, depois discutir. E defende o uso terapêutico de psicodélicos. É uma posição libertária adiada, não proibicionista."},
+{id:10, b:"B", ax:"COS", d:1,  t:"O Estado deve reconhecer e valorizar publicamente a família tradicional e o papel da religião na vida do país.",
+ pos:{F:2,Z:1,R:0}, inf:["Z","R"], note:"Flávio é o mais explícito. O MBL, base de Renan, é historicamente laico e libertário nesse ponto."},
+{id:11, b:"B", ax:"COS", d:1,  t:"Cotas raciais e sociais em universidades e concursos devem acabar; o critério deve ser exclusivamente mérito.",
+ pos:{F:1,Z:1,R:2}, inf:["F","Z"], note:"Renan tem no plano de governo o fim das cotas no ensino superior."},
+
+{id:12, b:"C", ax:"SEG", d:1,  t:"Facções como PCC e Comando Vermelho devem ser enquadradas legalmente como organizações terroristas.",
+ pos:{F:2,Z:2,R:2}, inf:[]},
+{id:13, b:"C", ax:"SEG", d:1,  t:"A maioridade penal deve ser reduzida para crimes graves.",
+ pos:{F:2,Z:1,R:2}, inf:["Z","R"], note:"Flávio propõe maioridade penal de 14 anos em casos de estupro, além de castração química para condenados por pedofilia."},
+{id:14, b:"C", ax:"SEG", d:1,  t:"O país deve construir um presídio de segurança máxima em área isolada da Amazônia para líderes de facção.",
+ pos:{F:1,Z:2,R:1}, inf:["F","R"], note:"É proposta assinada de Zema."},
+{id:15, b:"C", ax:"SEG", d:1,  t:"Em áreas dominadas pelo crime, o Estado pode suspender garantias temporariamente e operar em regime de exceção.",
+ pos:{F:1,Z:1,R:2}, inf:["F","Z"], note:"Renan adota explicitamente a doutrina do 'direito penal do inimigo', com lei antifacção e Estado de Defesa em territórios dominados."},
+{id:16, b:"C", ax:"SEG", d:1,  t:"Posse e porte de arma devem ser flexibilizados para o cidadão sem antecedentes.",
+ pos:{F:2,Z:1,R:1}, inf:["Z","R"]},
+
+{id:17, b:"D", ax:"INS", d:1, meta:true, t:"Um processo de corrupção que terminou por anulação de provas — e não por absolvição no mérito — continua sendo uma pendência para mim.",
+ pos:{F:-2,Z:1,R:2}, inf:["Z"], note:"O caso das rachadinhas de Flávio acabou assim: o STJ anulou as decisões do juiz e as provas (quebras de sigilo bancário, fiscal e telefônico), o próprio Ministério Público pediu a extinção da denúncia, o TJ-RJ a rejeitou e o STF negou a reabertura por perda de prazo. Nunca houve julgamento do mérito."},
+{id:18, b:"D", ax:"INS", d:1,  t:"O foro privilegiado deve acabar; parlamentares devem ser julgados por uma corte específica, não pelo STF.",
+ pos:{F:0,Z:1,R:2}, inf:["F","Z"], note:"Renan propõe uma corte com desembargadores nomeados por dois anos só para julgar congressistas."},
+{id:19, b:"D", ax:"INS", d:1,  t:"Ministros do STF devem ter mandato com prazo definido, e decisões monocráticas devem ser proibidas.",
+ pos:{F:2,Z:2,R:2}, inf:["Z"], note:"Ponto de convergência: os três candidatos de direita defenderam reforma do STF em sabatina conjunta."},
+{id:20, b:"D", ax:"INS", d:-1, t:"Um presidente pode descumprir decisão judicial que ele considere ilegal.",
+ pos:{F:1,Z:0,R:2}, inf:["Z"], note:"Renan transformou 'decisão ilegal não se cumpre' em lema de campanha. Flávio promete impeachment de ministros do STF. Zema ataca o STF no discurso, mas não pregou desobediência."},
+{id:21, b:"D", ax:"INS", d:1,  t:"Emendas parlamentares devem ser cortadas e ficar totalmente rastreáveis, mesmo que isso custe a base do governo no Congresso.",
+ pos:{F:-1,Z:2,R:2}, inf:["Z"], note:"O gasto médio anual com emendas passou de R$ 11 bi no governo Temer para R$ 27,2 bi no governo Bolsonaro — e R$ 34,4 bi nos anos do orçamento secreto. O PL depende dessa engrenagem para governar."},
+{id:22, b:"D", ax:null, d:0,  t:"Deve haver anistia ampla aos condenados pelo 8 de janeiro, incluindo Jair Bolsonaro.",
+ pos:{F:2,Z:1,R:-1}, inf:["Z","R"], note:"É a promessa central de Flávio — que beneficiaria diretamente o próprio pai, condenado a 27 anos por tentativa de golpe. Renan chama Bolsonaro de corrupto e diz que ele traiu as pautas da direita."},
+
+{id:23, b:"E", ax:null, d:0,  t:"O Brasil deve se alinhar estrategicamente aos EUA e se afastar do BRICS e da China.",
+ pos:{F:2,Z:1,R:0}, inf:["Z","R"], note:"Flávio lançou a pré-candidatura na CPAC, em Dallas, e defende aliança conservadora com os EUA."},
+{id:24, b:"E", ax:null, d:0,  t:"A agenda ambiental trava o desenvolvimento; licenciamento e metas climáticas devem ser flexibilizados.",
+ pos:{F:2,Z:2,R:1}, inf:["R"]},
+{id:25, b:"E", ax:null, d:0,  t:"Minerais estratégicos como as terras-raras devem ser processados aqui dentro, não exportados brutos para parceiros estrangeiros.",
+ pos:{F:-1,Z:0,R:2}, inf:["Z"], note:"Flávio quer que o Brasil seja o parceiro estratégico prioritário dos EUA no setor. Renan defende processar no Brasil. É a divergência mais nítida entre eles em política externa."},
+
+{id:26, b:"F", ax:"PRA", d:1, meta:true, t:"Prefiro votar em quem tem chance real de ganhar, mesmo que não seja o mais alinhado comigo.",
+ pos:{F:2,Z:-2,R:-1}, inf:[], note:"Agosto de 2026: Flávio tem 30% (Quaest) a 37% (BTG/Nexus) e empata tecnicamente com Lula no 2º turno. Renan oscila de 3% a 6%. Zema tem 2% a 3% e não terá tempo de rádio e TV — o Novo não passou a cláusula de barreira em 2022."},
+{id:27, b:"F", ax:"PRA", d:1,  t:"Aliança com o Centrão é aceitável se for o preço de governar e aprovar reformas.",
+ pos:{F:2,Z:-2,R:-2}, inf:[], note:"Zema fechou chapa puro-sangue do Novo, com Eduardo Girão de vice, sem alianças. Renan disputa por um partido criado em 2025."},
+{id:28, b:"F", ax:"PRA", d:-1, meta:true, t:"Ficha sem qualquer suspeita pesa mais para mim do que experiência de governo.",
+ pos:{F:-2,Z:2,R:1}, inf:[], note:"Zema encerrou sete anos de Executivo sem escândalo pessoal de corrupção relevante. Renan nunca ocupou cargo público — esta é sua primeira disputa. Flávio carrega o caso das rachadinhas."},
+{id:29, b:"F", ax:null, d:0,  t:"A continuidade do bolsonarismo é o melhor caminho para a direita brasileira.",
+ pos:{F:2,Z:0,R:-2}, inf:["Z"]},
+{id:30, b:"F", ax:null, d:0,  t:"O país precisa virar a página da polarização Lula x Bolsonaro.",
+ pos:{F:-2,Z:2,R:1}, inf:["R"], note:"Zema lançou a candidatura se apresentando como alternativa à polarização."}
+];
+
+const AXES = {
+  ECO:{lab:"Economia",     lo:"Estatista",   hi:"Liberal"},
+  COS:{lab:"Costumes",     lo:"Progressista", hi:"Conservador"},
+  SEG:{lab:"Segurança",    lo:"Garantista",  hi:"Punitivista"},
+  INS:{lab:"Instituições", lo:"Flexível",    hi:"Legalista"},
+  PRA:{lab:"Decisão",      lo:"Convicção",   hi:"Voto útil"}
+};
+
+/* Incoerências apuradas — o que cada um diz x o que fez. */
+const FLAGS = {
+F:[
+ "<b>Votou e depois desdisse.</b> Votou a favor da reforma tributária no Congresso e agora promete suspendê-la por um ano e refazê-la, alegando que ela produziu a maior alíquota de consumo do mundo. Ou o voto foi mal calculado, ou a promessa é eleitoral.",
+ "<b>Corta gasto no discurso, herda o oposto na prática.</b> Chama um governo com dívida de 81% do PIB de 'gastador e irresponsável' e promete regra fiscal com gatilho — mas o governo que ele representa triplicou o gasto com emendas parlamentares e criou o orçamento secreto.",
+ "<b>Liberalismo com cláusulas de escape.</b> Promete privatizar até 95% das estatais e cortar impostos, mas garante manter os programas sociais e não se compromete com a previdência dos militares. Não anunciou ministro da Fazenda — só disse que será 'no mínimo igual a Paulo Guedes'.",
+ "<b>O caso de corrupção não foi resolvido, foi encerrado.</b> As rachadinhas acabaram por anulação de provas no STJ e pedido de extinção feito pelo próprio MP, sem julgamento do mérito. Para quem usa 'contra corrupção' como critério, isso não é o mesmo que inocência declarada.",
+ "<b>Conflito de interesse assumido.</b> A promessa central da campanha — anistia ampla ao 8 de janeiro — beneficia diretamente o próprio pai, condenado a 27 anos. Ele diz que usará 'a força de um presidente recém-eleito' para aprová-la."
+],
+Z:[
+ "<b>Liberal no discurso, devedor na prática.</b> Em sete anos de governo não quitou uma parcela sequer da dívida com a União. O estoque da dívida de Minas cresceu mais de 50% desde 2020 e passou de R$ 188 bilhões em dezembro de 2024. Críticos chamam de 'calote autorizado'.",
+ "<b>O governador antiimposto propôs aumentar imposto.</b> Enviou projeto elevando o ICMS de itens 'supérfluos'; passou por quatro votos, com deputados da própria base apontando a incoerência com os princípios do Novo. Duas sessões extraordinárias esvaziaram pela repercussão.",
+ "<b>Renúncia fiscal recorde enquanto pregava austeridade.</b> É o governador que mais concedeu isenções na história de Minas — mais de R$ 20 bilhões por ano. E aceitou acordo da Lei Kandir de R$ 8,7 bi até 2037, quando estudos técnicos apontavam perdas acumuladas perto de R$ 135 bi.",
+ "<b>Segurança: dois placares diferentes.</b> O governo divulga queda de 72,8% em crimes violentos entre 2018 e 2025. Mas mortes violentas intencionais subiram 13,6% em Minas entre 2019 e 2024, enquanto caíam 8,2% no Brasil, e as mortes violentas por causa indeterminada — categoria onde homicídio costuma se esconder — cresceram 43,6% só em 2024.",
+ "<b>A favor:</b> é o único dos três que sai de um Executivo sem escândalo pessoal de corrupção relevante. Para o seu critério anticorrupção, esse é o ativo mais sólido da mesa.",
+ "<b>Contra:</b> viabilidade quase nula. 2% a 3% nas pesquisas, chapa puro-sangue do Novo sem alianças e sem tempo de rádio e TV."
+],
+R:[
+ "<b>Não é conservador nos costumes — é libertário.</b> Declarou-se favorável à legislação atual do aborto, incluindo as hipóteses autorizadas pelo STF, defende uso terapêutico de psicodélicos e adia (não rejeita) o debate da maconha. Se costumes são critério seu, é aqui que ele perde.",
+ "<b>Anticorrupção com um passivo próprio.</b> O MBL nasceu na defesa da Lava Jato, mas áudios vazados de 2020 mostram a cúpula reconhecendo internamente que era 'impossível defender Flávio' e discutindo como minimizar o escândalo para não romper com o governo. A ruptura foi cálculo de custo político antes de ser denúncia.",
+ "<b>Apoiou e agora acusa.</b> Apoiou Bolsonaro em 2018; hoje o chama de corrupto e diz que ele 'traiu as pautas da direita' ao destruir a Lava Jato, proteger o filho e nomear Aras. Pode ser amadurecimento — mas é exatamente o tipo de virada que ele cobra dos outros.",
+ "<b>Estado de Direito à la carte.</b> Adotou como lema 'decisão ilegal não se cumpre' e endossa desobedecer ordens judiciais que considere ilegais. Combate à corrupção depende de instituições funcionando; um presidente que escolhe quais decisões cumpre enfraquece justamente esse mecanismo.",
+ "<b>A favor:</b> tem as propostas institucionais mais concretas dos três — fim do foro privilegiado, corte específica para julgar congressistas, mandato para ministros do STF, fim das decisões monocráticas.",
+ "<b>Contra:</b> nunca ocupou cargo público e mais de 70% do eleitorado não o conhece."
+]
+};
+
+const SOURCES = [
+ ["Genial/Quaest — pesquisa presidencial, 5 de agosto de 2026","https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/genial-quaest-presidente-agosto-2026/"],
+ ["BTG/Nexus — intenção de voto para presidente, 3 de agosto de 2026","https://www.nexus.fsb.com.br/estudos-divulgados/pesquisa-btg-nexus-de-intencao-de-votos-para-presidente-do-brasil-3-de-agosto-de-2026/"],
+ ["O que propõem os presidenciáveis da direita liberal em 2026 — Gazeta do Povo","https://www.gazetadopovo.com.br/economia/direita-liberal-presidenciaveis-economia-2026/"],
+ ["Propostas de segurança dos candidatos a presidente — Gazeta do Povo","https://www.gazetadopovo.com.br/eleicoes/2026/maioridade-penal-drones-castracao-quimica-presidio-amazonico-fim-da-pm-propostas-seguranca-candidatos-presidente/"],
+ ["Flávio diz que suspenderá a reforma tributária por um ano — CNN Brasil","https://www.cnnbrasil.com.br/economia/macroeconomia/vamos-suspender-por-um-ano-a-entrada-em-vigor-da-reforma-tributaria-diz-flavio-bolsonaro/"],
+ ["Flávio fala em regra fiscal com gatilho para cortar gastos — O Povo","https://www.opovo.com.br/noticias/politica/2026/08/02/flavio-bolsonaro-fala-em-regra-fiscal-para-cortar-gastos-quando-divida-pib-atingir-certo-nivel.html"],
+ ["As promessas de Flávio Bolsonaro: privatização de 95% das estatais — NeoFeed","https://neofeed.com.br/economia/as-promessas-de-flavio-bolsonaro-privatizacao-de-95-das-estatais-e-corte-de-gastos-e-de-impostos/en/"],
+ ["Flávio promete anistia e projeta volta do pai ao Planalto em 2027 — Gazeta do Povo","https://www.gazetadopovo.com.br/republica/flavio-bolsonaro-promete-anistia-e-projeta-volta-do-pai-ao-planalto-em-2027/"],
+ ["STJ anula decisões e provas contra Flávio Bolsonaro no caso das rachadinhas — JOTA","https://www.jota.info/legislativo/stj-anula-decisoes-de-juiz-e-provas-contra-flavio-bolsonaro-no-caso-das-rachadinhas"],
+ ["O que aconteceu com o caso da rachadinha de Flávio Bolsonaro — CartaCapital","https://www.cartacapital.com.br/politica/o-que-aconteceu-com-o-caso-da-rachadinha-de-flavio-bolsonaro-suposto-candidato-em-2026/"],
+ ["Gasto com emendas parlamentares triplica no governo Bolsonaro — Brasil de Fato","https://www.brasildefato.com.br/2022/06/02/gasto-quase-triplica-e-bolsonaro-terminara-mandato-com-r-93-bilhoes-em-emendas-parlamentares/"],
+ ["Novo oficializa Romeu Zema como candidato à Presidência — Poder360","https://www.poder360.com.br/poder-eleicoes-2026/novo-formaliza-candidatura-de-romeu-zema/"],
+ ["Zema escolhe Eduardo Girão como vice e fecha chapa puro-sangue — InfoMoney","https://www.infomoney.com.br/politica/zema-escolhe-eduardo-girao-para-vice-e-fecha-chapa-do-novo-na-corrida-ao-planalto/"],
+ ["Zema promete enfrentar corrupção e endurecer combate ao crime — Correio Braziliense","https://www.correiobraziliense.com.br/politica/2026/07/7468712-zema-promete-enfentar-corrupcao-e-endurecer-combate-ao-crime.html"],
+ ["Com Zema, dívida de Minas com a União cresceu mais de 50% — Brasil de Fato","https://www.brasildefato.com.br/2025/01/30/com-zema-divida-de-minas-com-a-uniao-cresceu-mais-de-50/"],
+ ["Projeto de Zema para aumentar ICMS de supérfluos é criticado até pela base — NetCPA","https://netcpa.com.br/colunas/projeto-de-zema-para-aumentar-icms-de-superfluos-e-criticado-ate-pela-base/19140"],
+ ["Isenções de Zema retiram bilhões de Minas enquanto a dívida cresce — Brasil de Fato","https://www.brasildefato.com.br/2026/07/02/isencoes-de-zema-retiram-bilhoes-de-minas-enquanto-divida-estadual-cresce-afirmam-analistas/"],
+ ["Zema sobre ideologia de gênero na escola — O Tempo","https://twitter.com/otempo/status/1051949129742671873"],
+ ["Zema critica esquerda; Senado dificulta aborto legal — MidiaNews","https://www.midianews.com.br/politica/zema-critica-esquerda-caiado-cobra-nova-regra-para-aborto-legal/524992"],
+ ["Missão oficializa Renan Santos como candidato à Presidência — O Tempo","https://www.otempo.com.br/eleicoes/2026/presidentes/2026/7/20/missao-oficializa-renan-santos-como-candidato-a-presidencia"],
+ ["Fim de favelas, cotas e mais: o plano de governo de Renan Santos — Metrópoles","https://www.metropoles.com/brasil/fim-de-favelas-cotas-e-mais-conheca-plano-de-governo-de-renan-santos"],
+ ["Renan Santos incorpora desobediência ao STF como lema de campanha — Gazeta do Povo","https://www.gazetadopovo.com.br/eleicoes/2026/renan-incorpora-como-lema-de-campanha-slogan-sobre-desobediencia-a-decisoes-do-stf/"],
+ ["Renan Santos ataca STF, chama Bolsonaro de corrupto e propõe corte trilionário — ND Mais","https://ndmais.com.br/politica/renan-santos-ataca-stf-chama-bolsonaro-de-corrupto-e-propoe-corte-trilionario/"],
+ ["Renan Santos afirma que Bolsonaro traiu pautas da direita — ND Mais","https://ndmais.com.br/politica/renan-santos-afirma-que-bolsonaro-traiu-pautas-da-direita/"],
+ ["Partido Missão: o projeto de poder de Renan Santos e do MBL — Agência Pública","https://apublica.org/2026/07/partido-missao-o-projeto-de-poder-de-renan-santos-e-do-mbl/"],
+ ["O que Renan Santos não vai contar sobre o MBL na campanha — Intercept Brasil","https://www.intercept.com.br/2026/07/07/mbl-missao-renan-reportagens-misoginia-neonazismo/"],
+ ["Por que Caiado, Zema e Renan não empolgam eleitores de direita — Gazeta do Povo","https://www.gazetadopovo.com.br/eleicoes/2026/por-que-caiado-zema-renan-santos-nao-empolgam-eleitores-direita/"],
+ ["Renan Santos defende processamento de terras-raras no Brasil — Poder360","https://www.poder360.com.br/poder-eleicoes/renan-santos-defende-processamento-de-terras-raras-no-brasil/"]
+];
+
+/* ============================================================
+   ESTADO
+   ============================================================ */
+const KEY = "bussola2026.v1";
+let state = {a:{}, w:{}};
+try{ const s = localStorage.getItem(KEY); if(s) state = JSON.parse(s); }catch(e){}
+if(!state.a) state.a = {};
+if(!state.w) state.w = {};
+
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+
+const LABELS = [
+  {v:-2, g:"−2", t:"Discordo<br>totalmente"},
+  {v:-1, g:"−1", t:"Discordo"},
+  {v: 0, g:"0",  t:"Indiferente"},
+  {v: 1, g:"+1", t:"Concordo"},
+  {v: 2, g:"+2", t:"Concordo<br>totalmente"}
+];
+
+/* ============================================================
+   RENDER DO QUESTIONÁRIO
+   ============================================================ */
+const form = document.getElementById("form");
+
+BLOCKS.forEach((blk, bi) => {
+  const sec = document.createElement("section");
+  sec.className = "block";
+  const head = document.createElement("div");
+  head.className = "block-head";
+  head.innerHTML = '<span class="block-num">' + blk.k + '</span><h2></h2>';
+  head.querySelector("h2").textContent = blk.t;
+  sec.appendChild(head);
+  const sub = document.createElement("p");
+  sub.className = "block-sub";
+  sub.textContent = blk.s;
+  sec.appendChild(sub);
+
+  Q.filter(q => q.b === blk.k).forEach(q => sec.appendChild(renderQ(q)));
+  form.appendChild(sec);
+});
+
+function renderQ(q){
+  const el = document.createElement("article");
+  el.className = "q";
+  el.id = "q" + q.id;
+
+  const top = document.createElement("div");
+  top.className = "q-top";
+
+  const n = document.createElement("span");
+  n.className = "q-n";
+  n.textContent = String(q.id).padStart(2, "0");
+
+  const body = document.createElement("div");
+  body.className = "q-body";
+
+  const t = document.createElement("p");
+  t.className = "q-t";
+  t.textContent = q.t;
+  body.appendChild(t);
+
+  if(q.meta){
+    const m = document.createElement("p");
+    m.className = "q-meta";
+    m.textContent = "Critério de decisão: aqui a nota de cada candidato mede como ele se sai nesse teste, não o que ele defende.";
+    body.appendChild(m);
+  }
+
+  const scale = document.createElement("div");
+  scale.className = "scale";
+  scale.setAttribute("role", "group");
+  scale.setAttribute("aria-label", q.t);
+  LABELS.forEach(L => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "opt";
+    b.setAttribute("aria-pressed", String(state.a[q.id] === L.v));
+    b.innerHTML = '<span class="g">' + L.g + "</span>" + L.t;
+    b.addEventListener("click", () => {
+      state.a[q.id] = (state.a[q.id] === L.v) ? undefined : L.v;
+      if(state.a[q.id] === undefined) delete state.a[q.id];
+      [...scale.children].forEach((c, i) =>
+        c.setAttribute("aria-pressed", String(state.a[q.id] === LABELS[i].v)));
+      el.classList.toggle("answered", state.a[q.id] !== undefined);
+      save(); tick();
+    });
+    scale.appendChild(b);
+  });
+  body.appendChild(scale);
+
+  const foot = document.createElement("div");
+  foot.className = "q-foot";
+  const star = document.createElement("button");
+  star.type = "button";
+  star.className = "star";
+  star.setAttribute("aria-pressed", String(!!state.w[q.id]));
+  star.innerHTML = '<span class="mk"></span> Decisivo (peso 2×)';
+  star.addEventListener("click", () => {
+    state.w[q.id] = !state.w[q.id];
+    if(!state.w[q.id]) delete state.w[q.id];
+    star.setAttribute("aria-pressed", String(!!state.w[q.id]));
+    save();
+  });
+  foot.appendChild(star);
+  body.appendChild(foot);
+
+  top.appendChild(n);
+  top.appendChild(body);
+  el.appendChild(top);
+  if(state.a[q.id] !== undefined) el.classList.add("answered");
+  return el;
+}
+
+/* ============================================================
+   PROGRESSO
+   ============================================================ */
+const cNow = document.getElementById("cNow");
+const cBar = document.getElementById("cBar");
+const go   = document.getElementById("go");
+
+function answered(){ return Q.filter(q => state.a[q.id] !== undefined).length; }
+
+function tick(){
+  const n = answered();
+  cNow.textContent = n;
+  cBar.style.width = (n / Q.length * 100) + "%";
+  go.disabled = n < 10;
+  go.textContent = n === Q.length ? "Ver resultado" : (n < 10 ? "Responda 10+" : "Ver parcial (" + n + ")");
+}
+tick();
+
+const bar = document.getElementById("bar");
+addEventListener("scroll", () => bar.classList.toggle("stuck", scrollY > 8), {passive:true});
+
+/* ============================================================
+   CÁLCULO
+   ============================================================ */
+function weight(q){ return state.w[q.id] ? 2 : 1; }
+
+function affinity(key, pool){
+  let num = 0, den = 0;
+  pool.forEach(q => {
+    const u = state.a[q.id];
+    if(u === undefined) return;
+    const w = weight(q);
+    num += w * (4 - Math.abs(u - q.pos[key])) / 4;
+    den += w;
+  });
+  return den ? Math.round(num / den * 100) : null;
+}
+
+function axisScore(ax){
+  const pool = Q.filter(q => q.ax === ax && state.a[q.id] !== undefined);
+  if(!pool.length) return null;
+  let num = 0, den = 0;
+  pool.forEach(q => { const w = weight(q); num += w * state.a[q.id] * q.d; den += w * 2; });
+  return num / den; /* −1 .. +1 */
+}
+
+function gaps(key){
+  return Q.filter(q => state.a[q.id] !== undefined)
+    .map(q => ({q, d:Math.abs(state.a[q.id] - q.pos[key]), w:weight(q)}))
+    .sort((a,b) => (b.d * b.w) - (a.d * a.w));
+}
+
+const POSLBL = {"2":"defende com ênfase","1":"é favorável","0":"não se compromete","-1":"é contrário","-2":"é frontalmente contrário"};
+
+/* ============================================================
+   RESULTADO
+   ============================================================ */
+const res = document.getElementById("res");
+
+go.addEventListener("click", () => {
+  const scores = Object.keys(CAND)
+    .map(k => ({k, s:affinity(k, Q)}))
+    .sort((a,b) => b.s - a.s);
+
+  const n = answered();
+  let h = "";
+
+  h += '<div class="res-head"><h2>Seu resultado</h2><p>Calculado sobre ' + n + ' de 30 respostas' +
+       (Object.keys(state.w).length ? ', com ' + Object.keys(state.w).length + ' marcadas como decisivas (peso dobrado)' : '') +
+       '. Afinidade é a distância média entre as suas notas e as posições apuradas de cada candidato.</p></div>';
+
+  h += '<div class="rank">';
+  scores.forEach((sc, i) => {
+    const c = CAND[sc.k];
+    const g = gaps(sc.k);
+    /* convergência só conta quando VOCÊ tem opinião: neutro com neutro não é acordo */
+    const agree = g.filter(x => x.d <= 1 && Math.abs(state.a[x.q.id]) >= 1)
+      .sort((a, b) => (b.w - a.w) || (a.d - b.d) ||
+        (Math.abs(state.a[b.q.id]) - Math.abs(state.a[a.q.id])))
+      .slice(0, 4);
+    const clash = g.filter(x => x.d >= 3).slice(0, 4);
+
+    h += '<article class="card ' + c.cls + '">';
+    h += '<div class="card-top"><span class="pos">' + (i === 0 ? "Mais próximo" : i === scores.length - 1 ? "Mais distante" : "Intermediário") + '</span>';
+    h += '<div><h3>' + c.nome + '</h3><span class="party">' + c.partido + '</span></div>';
+    h += '<div class="pct"><b>' + sc.s + '%</b><span>afinidade</span></div></div>';
+    h += '<div class="meter"><i data-w="' + sc.s + '"></i></div>';
+
+    h += '<div class="subs">';
+    BLOCKS.forEach(b => {
+      const v = affinity(sc.k, Q.filter(q => q.b === b.k));
+      h += '<div class="sub"><span class="lab">' + b.short + '</span>' +
+           '<span class="val">' + (v === null ? "—" : v + "%") + '</span>' +
+           '<span class="mini"><i style="width:' + (v || 0) + '%"></i></span></div>';
+    });
+    h += '</div>';
+
+    h += '<div class="lists">';
+    h += '<div><h4>Onde vocês batem</h4><ul>';
+    agree.forEach(x => {
+      h += "<li>" + esc(x.q.t.slice(0, 105)) + (x.q.t.length > 105 ? "…" : "") +
+           "<em>ele " + POSLBL[String(x.q.pos[sc.k])] + (x.q.inf.includes(sc.k) ? " · inferido" : "") + "</em></li>";
+    });
+    if(!agree.length) h += "<li>Nenhuma convergência forte nas questões respondidas.</li>";
+    h += "</ul></div>";
+
+    h += '<div class="bad"><h4>Onde vocês colidem</h4><ul>';
+    clash.forEach(x => {
+      h += "<li>" + esc(x.q.t.slice(0, 105)) + (x.q.t.length > 105 ? "…" : "") +
+           "<em>ele " + POSLBL[String(x.q.pos[sc.k])] + (x.w === 2 ? " · você marcou decisivo" : "") + "</em></li>";
+    });
+    if(!clash.length) h += "<li>Nenhum choque grave nas questões respondidas.</li>";
+    h += "</ul></div></div>";
+
+    h += '<div class="flags"><h4>O que ele diz × o que ele fez</h4><ul>';
+    FLAGS[sc.k].forEach(f => h += "<li>" + f + "</li>");
+    h += "</ul></div></article>";
+  });
+  h += "</div>";
+
+  /* perfil */
+  h += '<div class="profile"><h3>O seu mapa</h3><p>Onde as suas respostas colocam você em cada eixo. O centro é a posição neutra.</p>';
+  Object.keys(AXES).forEach(k => {
+    const v = axisScore(k);
+    const A = AXES[k];
+    const pctPos = v === null ? 50 : (v + 1) / 2 * 100;
+    h += '<div class="ax"><div class="ax-lab"><span>' + A.lo + '</span>' +
+         '<span class="now">' + A.lab + (v === null ? " · sem dados" : " " + (v > 0 ? "+" : "") + v.toFixed(2)) + '</span>' +
+         '<span>' + A.hi + '</span></div>' +
+         '<div class="ax-track"><i style="left:calc(' + pctPos + '% - 1.5px)"></i></div></div>';
+  });
+  h += "</div>";
+
+  /* leitura */
+  const top = scores[0], bot = scores[scores.length - 1];
+  h += '<div class="verdict"><h3>Leitura em uma página</h3>';
+  h += "<p>Pelas suas respostas, <strong>" + CAND[top.k].nome + "</strong> é quem chega mais perto (" + top.s +
+       "%) e <strong>" + CAND[bot.k].nome + "</strong> é quem fica mais longe (" + bot.s + "%). Mas afinidade média esconde o essencial: veja em quais blocos a diferença aparece, e principalmente as linhas marcadas como decisivas.</p>";
+  h += "<p>Três armadilhas ao ler este número. <strong>Primeira:</strong> os três convergem quase totalmente em economia e segurança — o que os separa de verdade são costumes, instituições e histórico, não a agenda liberal. <strong>Segunda:</strong> o placar mede posição declarada; o painel 'diz × fez' de cada card é onde mora o risco de a promessa não virar governo. <strong>Terceira:</strong> viabilidade não é ideologia. Em agosto de 2026, Flávio Bolsonaro está entre 30% e 37%, Renan Santos entre 3% e 6%, Zema entre 2% e 3% e sem tempo de rádio e TV.</p>";
+  h += "<p>Se combate à corrupção for a sua trava inegociável, ela pesa contra Flávio pelo caso das rachadinhas encerrado sem julgamento de mérito e pela anistia que beneficia o próprio pai. Se conservadorismo nos costumes for a trava, ela pesa contra Renan, que é liberal nesse campo. Se viabilidade for a trava, ela elimina Zema. Cada trava aponta para um candidato diferente — decidir é escolher qual delas você não abre mão.</p></div>";
+
+  h += '<div class="actions">' +
+       '<button class="btn btn-ghost" id="again">Revisar respostas</button>' +
+       '<button class="btn btn-ghost" id="reset">Começar do zero</button>' +
+       "</div>";
+
+  h += '<div class="sources"><h3>Fontes consultadas</h3><ol>';
+  SOURCES.forEach(s => h += '<li><a href="' + s[1] + '" target="_blank" rel="noopener noreferrer">' + esc(s[0]) + "</a></li>");
+  h += "</ol></div>";
+
+  h += '<div class="foot">Levantamento fechado em 5 de agosto de 2026. Posições marcadas como <b>inferido</b> foram deduzidas do conjunto de declarações e do programa partidário, não de uma fala literal sobre aquela frase — trate-as com menos confiança. Campanha é matéria viva: confira o plano de governo registrado no TSE antes de votar.</div>';
+
+  res.innerHTML = h;
+  res.classList.add("on");
+
+  requestAnimationFrame(() => {
+    res.querySelectorAll(".meter > i").forEach(i => i.style.width = i.dataset.w + "%");
+  });
+  res.scrollIntoView({behavior:"smooth", block:"start"});
+
+  document.getElementById("again").addEventListener("click", () => {
+    res.classList.remove("on");
+    form.scrollIntoView({behavior:"smooth", block:"start"});
+  });
+  document.getElementById("reset").addEventListener("click", () => {
+    state = {a:{}, w:{}};
+    save();
+    location.reload();
+  });
+});
+
+function esc(s){
+  return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+}
+
+/* tema */
+const tog = document.getElementById("tog");
+tog.addEventListener("click", () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  const dark = cur ? cur === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+});
+</script>
+</body>
+</html>
