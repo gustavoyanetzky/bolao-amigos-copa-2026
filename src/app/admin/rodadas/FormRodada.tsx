@@ -66,6 +66,7 @@ export default function FormRodada({
 
   // Sucesso -> fecha o modal.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- fechar o <dialog> depois do sucesso da action; refatorar para estado derivado e tarefa propria.
     if (state && "ok" in state && state.ok) setOpen(false);
   }, [state]);
 

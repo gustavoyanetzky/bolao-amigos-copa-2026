@@ -1,3 +1,4 @@
+status: pausado — 2026-08-29
 # Regras do Projeto — Bolao Copa do Mundo FIFA
 
 *Gerenciador single-admin de bolao da Copa. Veja `prd.md` e `spec.md`.*

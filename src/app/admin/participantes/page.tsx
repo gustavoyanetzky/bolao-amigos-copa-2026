@@ -48,6 +48,7 @@ export default async function ParticipantesPage({ searchParams }: PageProps) {
     .single<Pick<Config, "prazo_campeao">>();
 
   const prazoExpirado = config?.prazo_campeao
+    // eslint-disable-next-line react-hooks/purity -- Server Component: roda no servidor, uma vez por request. A regra do React Compiler mira render de cliente.
     ? Date.now() > new Date(config.prazo_campeao).getTime()
     : false;
 

@@ -156,6 +156,7 @@ export default async function Home() {
   // So revela a selecao campea palpitada apos o prazo do campeao.
   const prazoPassou =
     config.prazo_campeao != null &&
+    // eslint-disable-next-line react-hooks/purity -- Server Component: roda no servidor, uma vez por request. A regra do React Compiler mira render de cliente.
     new Date(config.prazo_campeao).getTime() <= Date.now();
 
   // selecao_campea palpitada por participante (p/ bandeira pos-prazo).

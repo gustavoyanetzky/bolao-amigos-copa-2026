@@ -262,6 +262,7 @@ async function ModoPalpiteiro({
 
   // Rodada "atual": a primeira (em ordem) cujo ultimo jogo ainda nao passou.
   // Se a Copa ja acabou, cai na ultima rodada. (Mesma logica de /grade.)
+  // eslint-disable-next-line react-hooks/purity -- Server Component: roda no servidor, uma vez por request. A regra do React Compiler mira render de cliente.
   const agora = Date.now();
   const ultimoJogoPorRodada = new Map<string, number>();
   for (const j of jogosDatasData ?? []) {
